@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Adrianne Apon</title>
+  <meta name="description" content="Explore five UI/UX and website design case studies by Adrianne Apon, from project challenges and design decisions to the final solutions.">
+  <link rel="canonical" href="https://adrianne.design/projects/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects | Adrianne Apon">
+  <meta property="og:description" content="Explore five UI/UX and website design case studies by Adrianne Apon, from project challenges and design decisions to the final solutions.">
+  <meta property="og:url" content="https://adrianne.design/projects/">
+  <meta property="og:image" content="https://adrianne.design/og-preview.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Adrianne Apon — UI/UX Designer • Website Designer — adrianne.design">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Projects | Adrianne Apon">
+  <meta name="twitter:description" content="Explore five UI/UX and website design case studies by Adrianne Apon, from project challenges and design decisions to the final solutions.">
+  <meta name="twitter:image" content="https://adrianne.design/og-preview.png">
+  <meta name="twitter:image:alt" content="Adrianne Apon — UI/UX Designer • Website Designer — adrianne.design">
+  <link rel="icon" type="image/png" href="/images/logoicon.png">
+  <link rel="stylesheet" href="/src/cursors.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/projects-page.css">
+  <link rel="stylesheet" href="/src/desktop-header.css">
+  <link rel="stylesheet" href="/src/moorr-showcase.css">
+  <link rel="stylesheet" href="/src/cafe-showcase.css">
+  <link rel="stylesheet" href="/src/sears-showcase.css">
+  <link rel="stylesheet" href="/src/plumber-showcase.css">
+  <link rel="stylesheet" href="/src/northline-showcase.css">
+  <link rel="stylesheet" href="/src/mobile-showcases.css">
+  <script type="module" src="/src/mobile-showcases.js"></script>
+  <script type="module" src="/src/global-interactions.js"></script>
+  <script type="module" src="/src/desktop-polish.js"></script>
+  <script type="module" src="/src/moorr-showcase.js"></script>
+  <script type="module" src="/src/cafe-showcase.js"></script>
+  <script type="module" src="/src/sears-showcase.js"></script>
+  <script type="module" src="/src/plumber-showcase.js"></script>
+  <script type="module" src="/src/northline-showcase.js"></script>
+  <script>
+    // Consume only the immediately preceding menu navigation, before header paint.
+    try {
+      const arrival = JSON.parse(sessionStorage.getItem('portfolio-menu-arrival'));
+      sessionStorage.removeItem('portfolio-menu-arrival');
+      if (arrival && arrival.expires > Date.now() && arrival.destination === location.pathname + location.search + location.hash) {
+        document.documentElement.classList.add('header-scroll-hidden', 'menu-navigation-pending');
+        document.documentElement.setAttribute('data-menu-arrival', '');
+      }
+    } catch { /* Storage restrictions must not prevent the page from loading. */ }
+  </script>
+</head>
+<body>
+  <!-- Homepage header markup; Home resolves to the existing homepage Hero. -->
+  <header>
+    <a class="logo-block" href="/#hello" data-desktop-href="/#hello" aria-label="Adrianne Apon — Home">
+      <img src="/images/logoicon.png" alt="Adrianne Apon portfolio logo">
+      <p class="logo-text">Adrianne</p>
+    </a>
+    <a class="header-availability header-email" href="mailto:hello@adrianne.design">
+      <span>hello@adrianne.design</span>
+    </a>
+  </header>
+  <main class="projects-page" aria-labelledby="projects-page-title">
+    <p class="projects-page-eyebrow">Case Studies</p>
+    <h1 id="projects-page-title">PROOF, NOT PROMISES.</h1>
+    <hr class="projects-page-separator">
+    <section class="moorr-case-study" aria-labelledby="moorr-title">
+      <h2 class="moorr-title-row" id="moorr-title">
+        <span class="moorr-number">01</span>
+        <a class="moorr-project-link" href="https://my.moorr.com.au/public/accounts" target="_blank" rel="noopener noreferrer" aria-label="Moorr (opens in a new tab)">
+          <span class="moorr-project-name">MOORR</span>
+          <img src="/images/assets/link-arrow.png" width="28" height="28" alt="">
+        </a>
+      </h2>
+      <p class="moorr-overview"><strong>Moorr</strong> is a personal finance and property wealth platform that helps users manage their financial position, property portfolio, cashflow, and long-term goals. The platform combines financial data, projections, and planning tools into one experience.</p>
+      <div class="mobile-showcase mobile-showcase--moorr" style="--device-width: 1213; --device-height: 2354" aria-label="Moorr mobile interface with a static laptop preview">
+        <div class="mobile-device-stage">
+          <div class="mobile-device-screen">
+            <img class="mobile-device-content" src="/images/projects/case-study/moorr/moorr-mobile.png" width="878" height="13578" alt="Moorr mobile website interface">
+          </div>
+          <img class="mobile-device-frame" src="/images/projects/case-study/moorr/moorr-device.png" width="1213" height="2354" alt="Moorr phone frame and static laptop preview">
+        </div>
+      </div>
+      <div class="moorr-showcase" aria-label="Moorr desktop and mobile interface showcase">
+        <div class="moorr-device-stage">
+          <div class="moorr-screen">
+            <img class="moorr-screen-content" src="/images/projects/case-study/moorr/moorUI.png" width="1147" height="2928" alt="Moorr financial dashboard, expense projections and expense breakdown">
+          </div>
+          <img class="moorr-device-frame" src="/images/projects/case-study/moorr/laptop-phone.png" width="1805" height="812" alt="Moorr laptop with fixed navigation sidebar and mobile interface">
+        </div>
+      </div>
+      <div class="moorr-columns">
+        <section aria-labelledby="moorr-role">
+          <h3 id="moorr-role">MY ROLE</h3>
+          <p>UI/UX Designer</p>
+          <ul>
+            <li>Designed end-to-end experiences</li>
+            <li>Built reusable design system</li>
+            <li>Created web and mobile UI</li>
+            <li>Supported developer hand-off</li>
+            <li>Reviewed developer design output</li>
+          </ul>
+        </section>
+        <section aria-labelledby="moorr-challenges">
+          <h3 id="moorr-challenges">CHALLENGES</h3>
+          <p>Design challenges</p>
+          <ul>
+            <li>Complex financial information</li>
+            <li>Multiple connected user flows</li>
+            <li>Dense projection interfaces</li>
+            <li>Strict business requirements</li>
+            <li>Desktop-to-mobile adaptation</li>
+          </ul>
+        </section>
+        <section aria-labelledby="moorr-solutions">
+          <h3 id="moorr-solutions">SOLUTIONS</h3>
+          <p>Design approach</p>
+          <ul>
+            <li>Simplified financial information</li>
+            <li>Unified connected workflows</li>
+            <li>Clarified projection visualisations</li>
+            <li>Followed acceptance criteria</li>
+            <li>Optimised responsive layouts</li>
+          </ul>
+        </section>
+        <section aria-labelledby="moorr-results">
+          <h3 id="moorr-results">RESULTS</h3>
+          <p>Project impact</p>
+          <ul>
+            <li>Clearer financial experiences</li>
+            <li>More consistent product designs</li>
+            <li>Improved feature usability</li>
+            <li>Smoother developer hand-off</li>
+            <li>Stronger responsive consistency</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+    <hr class="projects-page-separator cafe-separator">
+    <section class="moorr-case-study cafe-case-study plumber-case-study" aria-labelledby="plumber-title">
+      <h2 class="moorr-title-row" id="plumber-title">
+        <span class="moorr-number">02</span>
+        <span>MR. PLUMBER</span>
+      </h2>
+      <p class="moorr-overview"><strong>Mr. Plumber</strong> is a plumbing service website redesign focused on making services easier to understand, strengthening customer trust, and creating clearer paths to enquiry. The new design brings services, project work, service areas, FAQs, and contact options into one more consistent experience.</p>
+      <div class="mobile-showcase mobile-showcase--plumber" style="--device-width: 1214; --device-height: 2355" aria-label="Mr. Plumber mobile interface with a static laptop preview">
+        <div class="mobile-device-stage">
+          <div class="mobile-device-screen">
+            <img class="mobile-device-content" src="/images/projects/case-study/plumber/plumber-mobile.png" width="878" height="17336" alt="Mr. Plumber mobile website interface">
+          </div>
+          <img class="mobile-device-frame" src="/images/projects/case-study/plumber/plumber-device.png" width="1214" height="2355" alt="Mr. Plumber phone frame and static laptop preview">
+        </div>
+      </div>
+      <div class="moorr-showcase plumber-showcase" aria-label="Mr. Plumber desktop and mobile website showcase">
+        <div class="moorr-device-stage">
+          <div class="moorr-screen">
+            <img class="moorr-screen-content" src="/images/projects/case-study/plumber/plumber.png" width="3166" height="9343" alt="Mr. Plumber website services, project work, service areas and contact information">
+          </div>
+          <img class="moorr-device-frame" src="/images/projects/case-study/plumber/plumber-laptop.png" width="3788" height="1636" alt="Mr. Plumber laptop and static phone preview">
+        </div>
+      </div>
+      <div class="moorr-columns">
+        <section aria-labelledby="plumber-role">
+          <h3 id="plumber-role">MY ROLE</h3>
+          <p>UI/UX Designer</p>
+          <ul>
+            <li>Redesigned end-to-end website</li>
+            <li>Defined visual hierarchy</li>
+            <li>Built reusable UI system</li>
+            <li>Designed responsive layouts</li>
+            <li>Created interactive prototype</li>
+          </ul>
+        </section>
+        <section aria-labelledby="plumber-issues">
+          <h3 id="plumber-issues">ISSUES</h3>
+          <p>Website issues</p>
+          <ul>
+            <li>Services felt hard to scan</li>
+            <li>Contact paths lacked prominence</li>
+            <li>Trust signals felt scattered</li>
+            <li>Portfolio lacked clear structure</li>
+            <li>Local coverage felt unclear</li>
+          </ul>
+        </section>
+        <section aria-labelledby="plumber-solutions">
+          <h3 id="plumber-solutions">SOLUTIONS</h3>
+          <p>Design approach</p>
+          <ul>
+            <li>Grouped services into cards</li>
+            <li>Prioritised quote and contact</li>
+            <li>Consolidated trust indicators</li>
+            <li>Structured project showcase gallery</li>
+            <li>Added service-area map</li>
+          </ul>
+        </section>
+        <section aria-labelledby="plumber-results">
+          <h3 id="plumber-results">RESULTS</h3>
+          <p>Project impact</p>
+          <ul>
+            <li>Faster service discovery</li>
+            <li>Clearer contact pathways</li>
+            <li>Stronger trust presentation</li>
+            <li>Better project visibility</li>
+            <li>Clearer local service coverage</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+    <hr class="projects-page-separator cafe-separator">
+    <section class="moorr-case-study cafe-case-study northline-case-study" aria-labelledby="northline-title">
+      <h2 class="moorr-title-row" id="northline-title">
+        <span class="moorr-number">03</span>
+        <span>NORTHLINE PROPERTY CO.</span>
+      </h2>
+      <p class="moorr-overview"><strong>Northline Property Co.</strong> is a conceptual Australian real estate website designed to make property discovery, suburb research, and inspection booking easier. The redesign focuses on clearer navigation, stronger trust signals, and a more premium experience across desktop and mobile.</p>
+      <div class="mobile-showcase mobile-showcase--northline" style="--device-width: 1214; --device-height: 2355" aria-label="Northline Property Co. mobile interface with a static laptop preview">
+        <div class="mobile-device-stage">
+          <div class="mobile-device-screen">
+            <img class="mobile-device-content" src="/images/projects/case-study/northline/northline-mobile.png" width="878" height="18820" alt="Northline Property Co. mobile website interface">
+          </div>
+          <img class="mobile-device-frame" src="/images/projects/case-study/northline/northline-device.png" width="1214" height="2355" alt="Northline Property Co. phone frame and static laptop preview">
+        </div>
+      </div>
+      <div class="moorr-showcase northline-showcase" aria-label="Northline Property Co. desktop and mobile website showcase">
+        <div class="moorr-device-stage">
+          <div class="moorr-screen">
+            <img class="moorr-screen-content" src="/images/projects/case-study/northline/northline.png" width="2628" height="8498" alt="Northline Property Co. website property discovery, suburb information and inspection booking">
+          </div>
+          <img class="moorr-device-frame" src="/images/projects/case-study/northline/northline-laptop.png" width="3610" height="1644" alt="Northline Property Co. laptop and static phone preview">
+        </div>
+      </div>
+      <div class="moorr-columns">
+        <section aria-labelledby="northline-role">
+          <h3 id="northline-role">MY ROLE</h3>
+          <p>UI/UX Designer</p>
+          <ul>
+            <li>Led end-to-end UX process</li>
+            <li>Defined information architecture</li>
+            <li>Created user flows</li>
+            <li>Built reusable design system</li>
+            <li>Designed interactive prototypes</li>
+          </ul>
+        </section>
+        <section aria-labelledby="northline-issues">
+          <h3 id="northline-issues">ISSUES</h3>
+          <p>Website issues</p>
+          <ul>
+            <li>Property discovery lacked clarity</li>
+            <li>Navigation felt fragmented</li>
+            <li>Suburb information felt disconnected</li>
+            <li>Trust signals lacked prominence</li>
+            <li>Conversion paths felt unclear</li>
+          </ul>
+        </section>
+        <section aria-labelledby="northline-solutions">
+          <h3 id="northline-solutions">SOLUTIONS</h3>
+          <p>Design approach</p>
+          <ul>
+            <li>Simplified property discovery</li>
+            <li>Restructured site navigation</li>
+            <li>Connected suburb information</li>
+            <li>Strengthened trust-building content</li>
+            <li>Clarified enquiry pathways</li>
+          </ul>
+        </section>
+        <section aria-labelledby="northline-results">
+          <h3 id="northline-results">RESULTS</h3>
+          <p>Project impact</p>
+          <ul>
+            <li>Clearer property browsing</li>
+            <li>More intuitive navigation</li>
+            <li>Stronger local expertise</li>
+            <li>Better conversion visibility</li>
+            <li>More consistent experience</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+    <hr class="projects-page-separator cafe-separator">
+    <section class="moorr-case-study cafe-case-study" aria-labelledby="cafe-title">
+      <h2 class="moorr-title-row" id="cafe-title">
+        <span class="moorr-number">04</span>
+        <span>CAFÉ AUSTRALIA</span>
+      </h2>
+      <p class="moorr-overview"><strong>Café Australia</strong> is a website redesign focused on creating a more premium, modern, and visually engaging experience for the brand. The goal was to improve the website’s presentation, strengthen the coffee-focused identity, and make the overall browsing experience clearer and more polished.</p>
+      <div class="mobile-showcase mobile-showcase--cafe" style="--device-width: 1206; --device-height: 2354" aria-label="Café Australia mobile interface with a static laptop preview">
+        <div class="mobile-device-stage">
+          <div class="mobile-device-screen">
+            <img class="mobile-device-content" src="/images/projects/case-study/cafe/cafe-mobile.png" width="878" height="20094" alt="Café Australia mobile website interface">
+          </div>
+          <img class="mobile-device-frame" src="/images/projects/case-study/cafe/cafe-device.png" width="1206" height="2354" alt="Café Australia phone frame and static laptop preview">
+        </div>
+      </div>
+      <div class="cafe-showcase" aria-label="Café Australia website prototype on a laptop with a static mobile preview">
+        <div class="cafe-screen">
+          <video class="cafe-prototype" src="/images/projects/case-study/cafe/cafe-australia.mp4" muted playsinline preload="none" disablepictureinpicture aria-label="Café Australia website prototype"></video>
+        </div>
+        <img class="cafe-device-frame" src="/images/projects/case-study/cafe/cafe-laptop.png" width="3610" height="1644" alt="Café Australia laptop and static phone preview">
+      </div>
+      <div class="moorr-columns">
+        <section aria-labelledby="cafe-role">
+          <h3 id="cafe-role">MY ROLE</h3>
+          <p>UI/UX Designer</p>
+          <ul>
+            <li>Redesigned the website experience</li>
+            <li>Improved structure and hierarchy</li>
+            <li>Created a consistent UI system</li>
+            <li>Designed responsive web layouts</li>
+            <li>Created an animated prototype</li>
+          </ul>
+        </section>
+        <section aria-labelledby="cafe-issues">
+          <h3 id="cafe-issues">ISSUES</h3>
+          <p>Current website issues</p>
+          <ul>
+            <li>Outdated website presentation</li>
+            <li>Weak visual hierarchy</li>
+            <li>Limited premium brand feel</li>
+            <li>Inconsistent spacing and content</li>
+            <li>Cross-device usability issues</li>
+          </ul>
+        </section>
+        <section aria-labelledby="cafe-solutions">
+          <h3 id="cafe-solutions">SOLUTIONS</h3>
+          <p>Design approach</p>
+          <ul>
+            <li>Introduced a premium visual direction</li>
+            <li>Improved typography and spacing</li>
+            <li>Strengthened coffee-focused brand imagery</li>
+            <li>Standardised components and sections</li>
+            <li>Optimised desktop and mobile</li>
+          </ul>
+        </section>
+        <section aria-labelledby="cafe-results">
+          <h3 id="cafe-results">RESULTS</h3>
+          <p>Project impact</p>
+          <ul>
+            <li>Stronger overall brand presentation</li>
+            <li>Clearer website experience</li>
+            <li>More consistent visual design</li>
+            <li>Improved readability and organisation</li>
+            <li>Better cross-device responsiveness</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+    <hr class="projects-page-separator cafe-separator">
+    <section class="moorr-case-study cafe-case-study sears-case-study" aria-labelledby="sears-title">
+      <h2 class="moorr-title-row" id="sears-title">
+        <span class="moorr-number">05</span>
+        <span>CHARLENA SEARS, PSY.D.</span>
+      </h2>
+      <p class="moorr-overview"><strong>Charlena Sears, Psy.D.</strong> is a therapy website redesign focused on creating a calmer, clearer, and more trustworthy digital experience. The goal was to improve how visitors understand the services, navigate the website, and feel confident taking the next step toward getting support.</p>
+      <div class="mobile-showcase mobile-showcase--sears" style="--device-width: 1212; --device-height: 2354" aria-label="Charlena Sears, Psy.D. mobile interface with a static laptop preview">
+        <div class="mobile-device-stage">
+          <div class="mobile-device-screen">
+            <img class="mobile-device-content" src="/images/projects/case-study/sears/sears-mobile.png" width="878" height="15462" alt="Charlena Sears, Psy.D. mobile website interface">
+          </div>
+          <img class="mobile-device-frame" src="/images/projects/case-study/sears/sears-device.png" width="1212" height="2354" alt="Charlena Sears, Psy.D. phone frame and static laptop preview">
+        </div>
+      </div>
+      <div class="cafe-showcase sears-showcase" aria-label="Charlena Sears website prototype on a laptop with a static mobile preview">
+        <div class="cafe-screen">
+          <video class="cafe-prototype" src="/images/projects/case-study/sears/sears.mp4" muted playsinline preload="none" disablepictureinpicture aria-label="Charlena Sears website prototype"></video>
+        </div>
+        <img class="cafe-device-frame" src="/images/projects/case-study/sears/sears-laptop.png" width="18050" height="8260" alt="Charlena Sears laptop and static phone preview">
+      </div>
+      <div class="moorr-columns">
+        <section aria-labelledby="sears-role">
+          <h3 id="sears-role">MY ROLE</h3>
+          <p>UI/UX Designer</p>
+          <ul>
+            <li>Redesigned the website experience</li>
+            <li>Improved structure and hierarchy</li>
+            <li>Created a consistent UI system</li>
+            <li>Designed responsive web layouts</li>
+            <li>Created an interactive prototype</li>
+          </ul>
+        </section>
+        <section aria-labelledby="sears-issues">
+          <h3 id="sears-issues">ISSUES</h3>
+          <p>Current website issues</p>
+          <ul>
+            <li>Unclear content hierarchy</li>
+            <li>Confusing user pathways</li>
+            <li>Weak trust-building elements</li>
+            <li>Inconsistent visual presentation</li>
+            <li>Limited mobile usability</li>
+          </ul>
+        </section>
+        <section aria-labelledby="sears-solutions">
+          <h3 id="sears-solutions">SOLUTIONS</h3>
+          <p>Design approach</p>
+          <ul>
+            <li>Simplified content hierarchy</li>
+            <li>Clarified key user journeys</li>
+            <li>Strengthened trust-focused messaging</li>
+            <li>Standardised visual presentation</li>
+            <li>Improved responsive usability</li>
+          </ul>
+        </section>
+        <section aria-labelledby="sears-results">
+          <h3 id="sears-results">RESULTS</h3>
+          <p>Project impact</p>
+          <ul>
+            <li>Clearer content structure</li>
+            <li>Easier website navigation</li>
+            <li>Stronger sense of trust</li>
+            <li>More consistent visual identity</li>
+            <li>Better mobile experience</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+  </main>
+  <!-- shared-footer -->
+  <script type="module" src="/src/footer/footer.js"></script>
+</body>
+</html>

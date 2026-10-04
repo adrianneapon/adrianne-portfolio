@@ -203,6 +203,17 @@ p.logo-text {
   .hero-h1 { font-size: 84px; line-height: 84px; }
 }
 </style>
+  <script>
+    // Consume only the immediately preceding menu navigation, before header paint.
+    try {
+      const arrival = JSON.parse(sessionStorage.getItem('portfolio-menu-arrival'));
+      sessionStorage.removeItem('portfolio-menu-arrival');
+      if (arrival && arrival.expires > Date.now() && arrival.destination === location.pathname + location.search + location.hash) {
+        document.documentElement.classList.add('header-scroll-hidden', 'menu-navigation-pending');
+        document.documentElement.setAttribute('data-menu-arrival', '');
+      }
+    } catch { /* Storage restrictions must not prevent the page from loading. */ }
+  </script>
 </head>
 <body>
 
@@ -211,7 +222,7 @@ p.logo-text {
 
 <!-- HEADER -->
 <header>
-  <a class="logo-block" href="#" data-desktop-href="#hero" aria-label="Adrianne Apon — Home">
+  <a class="logo-block" href="/#hello" data-desktop-href="/#hello" aria-label="Adrianne Apon — Home">
     <img src="images/logoicon.png" alt="Adrianne Apon portfolio logo">
     <p class="logo-text">Adrianne</p>
   </a>
@@ -223,6 +234,7 @@ p.logo-text {
 
 <!-- HERO -->
 <section id="hero" aria-label="Hero">
+<span id="hello" aria-hidden="true"></span>
   <div class="eyebrow">
     <span class="eyebrow-text">Hello, I’m Adrianne</span>
   </div>

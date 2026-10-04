@@ -12,11 +12,11 @@ import northlineDesktop from '../../images/projects/Northline-desktop.png';
 import './projects-content.css';
 
 const projects = [
-  { name: 'Sears', href: 'projects.html#sears-title', mobile: sears, desktop: searsDesktop, x: 40, y: 714, width: 173.683, mobileWidth: 173.683, mobileAspect: 209 / 471, delay: 945 },
-  { name: 'Cafe', href: 'projects.html#cafe-title', mobile: cafe, desktop: cafeDesktop, x: 238, y: 714, width: 179.015, mobileWidth: 179.015, mobileAspect: 215 / 471, delay: 614 },
-  { name: 'Moorr', href: 'projects.html#moorr-title', mobile: moorrMobile, desktop: moorr, x: 441, y: 649, width: 1042, mobileWidth: 173.683, mobileAspect: 209 / 471, delay: 429 },
-  { name: 'Mr. Plumber', href: 'projects.html#plumber-title', mobile: alpha, desktop: alphaDesktop, x: 1506, y: 714, width: 173.683, mobileWidth: 173.683, mobileAspect: 209 / 471, delay: 614 },
-  { name: 'Northline', href: 'projects.html#northline-title', mobile: northline, desktop: northlineDesktop, x: 1704, y: 714, width: 173.993, mobileWidth: 173.993, mobileAspect: 209 / 471, delay: 945 },
+  { name: 'Sears', href: '/projects/#sears-title', mobile: sears, desktop: searsDesktop, x: 40, y: 714, width: 173.683, mobileWidth: 173.683, mobileAspect: 209 / 471, delay: 945 },
+  { name: 'Cafe', href: '/projects/#cafe-title', mobile: cafe, desktop: cafeDesktop, x: 238, y: 714, width: 179.015, mobileWidth: 179.015, mobileAspect: 215 / 471, delay: 614 },
+  { name: 'Moorr', href: '/projects/#moorr-title', mobile: moorrMobile, desktop: moorr, x: 441, y: 649, width: 1042, mobileWidth: 173.683, mobileAspect: 209 / 471, delay: 429 },
+  { name: 'Mr. Plumber', href: '/projects/#plumber-title', mobile: alpha, desktop: alphaDesktop, x: 1506, y: 714, width: 173.683, mobileWidth: 173.683, mobileAspect: 209 / 471, delay: 614 },
+  { name: 'Northline', href: '/projects/#northline-title', mobile: northline, desktop: northlineDesktop, x: 1704, y: 714, width: 173.993, mobileWidth: 173.993, mobileAspect: 209 / 471, delay: 945 },
 ];
 const defaultActive = 2;
 const desktop = { width: projects[defaultActive].width, height: 523, y: projects[defaultActive].y };

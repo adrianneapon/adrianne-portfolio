@@ -1,0 +1,75 @@
+header .header-availability { right: 104px; }
+.compact-navigation { position: relative; width: 40px; height: 40px; flex: 0 0 40px; }
+.compact-menu-button {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: #FEE5C5;
+  cursor: pointer;
+}
+.compact-menu-button::before,
+.compact-menu-button::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 19px;
+  width: 20px;
+  height: 2px;
+  background: #3B001B;
+  transform: translateY(-5px);
+  transition: transform 250ms ease;
+}
+.compact-menu-button::after { transform: translateY(5px); }
+.compact-menu-button[aria-expanded="true"]::before { transform: rotate(45deg); }
+.compact-menu-button[aria-expanded="true"]::after { transform: rotate(-45deg); }
+.compact-menu-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  box-sizing: border-box;
+  width: 207px;
+  height: 226px;
+  padding: 24px 32px 32px;
+  border: 1px solid #EFD3B8;
+  border-radius: 10px;
+  background: #FEE5C5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.compact-menu-panel[hidden] { display: none; }
+.compact-menu-panel a {
+  flex: 0 0 auto;
+  font: normal 500 18px/normal 'Poppins', sans-serif;
+  letter-spacing: 0;
+  color: #3B001B;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.compact-menu-panel a:hover,
+.compact-menu-panel a:active { color: #EE5122; }
+.compact-menu-button:focus-visible,
+.compact-menu-panel a:focus-visible { outline: 2px solid #3B001B; outline-offset: 3px; }
+.compact-menu-panel .compact-menu-contact { display: none; }
+#hello { position: absolute; top: 0; left: 0; pointer-events: none; }
+/* Keep the existing right scrollbar gutter clipped, but let the menu extend below the header. */
+@media (min-width: 1025px) and (pointer: fine) and (hover: hover) {
+  @supports selector(::-webkit-scrollbar) {
+    header.header-menu-open { clip-path: inset(0 9.5px -320px 0); }
+  }
+}
+html.menu-navigation-pending header { transform: translateY(-110px); transition: none; }
+@media (max-width: 768px) {
+  header .header-availability { display: none; }
+  .compact-menu-panel { height: auto; }
+  .compact-menu-panel .compact-menu-contact { display: block; }
+  html.menu-navigation-pending header { transform: translateY(-100px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .compact-menu-button::before, .compact-menu-button::after { transition: none; }
+}

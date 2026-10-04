@@ -16,7 +16,7 @@ export default defineConfig({
   plugins: [react(), sharedFooter],
   build: {
     rolldownOptions: {
-      input: { main: 'index.html', projects: 'projects.html' },
+      input: { main: 'index.html', projects: 'projects/index.html', projectsLegacy: 'projects.html' },
     },
   },
 });
