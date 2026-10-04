@@ -1,0 +1,37 @@
+.cafe-showcase { display: none; }
+
+@media (width > 920px) {
+  .cafe-showcase {
+    display: block;
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    aspect-ratio: 3610 / 1644;
+    margin-top: 60px;
+  }
+  .cafe-device-frame {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+  .cafe-screen {
+    position: absolute;
+    left: calc(395 / 3610 * 100%);
+    top: calc(111 / 1644 * 100%);
+    width: calc(2630 / 3610 * 100%);
+    height: calc(1320 / 1644 * 100%);
+    overflow: hidden;
+    background: #000;
+  }
+  .cafe-prototype {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+  }
+  .cafe-showcase + .moorr-columns { margin-top: 80px; }
+}

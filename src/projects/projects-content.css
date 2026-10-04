@@ -1,0 +1,75 @@
+#projects-runway { position: relative; height: 265vh; }
+#projects-runway > #projects { position: sticky; top: 0; }
+.projects-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1920px;
+  height: 911px;
+  transform: translateX(-50%) scale(var(--projects-scale, 1));
+  transform-origin: top center;
+  pointer-events: none;
+  --projects-progress: 0;
+}
+.projects-eyebrow-position { position: absolute; top: 242px; width: 100%; transform: translateY(calc(-154px * var(--projects-progress))); }
+.projects-eyebrow { margin: 0; color: #3B001B; text-align: center; font: 400 16px/24px 'Intel One Mono', monospace; }
+.projects-title-position { position: absolute; top: 289px; width: 100%; transform: translateY(calc(-194.875px * var(--projects-progress))) scale(calc(1 - .45 * var(--projects-progress))); }
+.projects-title { margin: 0; text-align: center; font: 800 88.943px/77.5px Inter, sans-serif; background: none; background-clip: text; -webkit-background-clip: text; color: #3B001B; }
+/* Extend the gradient paint area below the tight line box without moving the text. */
+.projects-title { padding-bottom: .2em; margin-bottom: -.2em; background-image: none; }
+@media (min-width: 1301px) {
+  .projects-title { font: 700 95px/80px Oswald, sans-serif; letter-spacing: -0.04em; }
+}
+.projects-image-position { position: absolute; inset: 0; transform: translateY(calc(-373px * var(--projects-progress))); }
+.project-preview { position: absolute; display: block; padding: 0; border: 0; margin: 0; background: transparent; color: inherit; pointer-events: none; }
+.project-preview-frame { position: relative; display: block; width: 100%; height: 100%; overflow: hidden; border-radius: inherit; }
+.project-preview img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; pointer-events: none; }
+.project-image-desktop { opacity: 0; }
+.project-preview[data-active="true"] .project-image-desktop { opacity: 1; }
+.project-preview[data-active="true"] .project-image-mobile { opacity: 0; }
+.projects-content[data-interactive="true"] .project-preview { pointer-events: auto; transition: left 500ms cubic-bezier(.22, .61, .36, 1), top 500ms cubic-bezier(.22, .61, .36, 1), width 500ms cubic-bezier(.22, .61, .36, 1), height 500ms cubic-bezier(.22, .61, .36, 1), border-radius 500ms cubic-bezier(.22, .61, .36, 1); }
+.projects-content[data-interactive="true"] .project-preview img { transition: opacity 220ms ease 60ms; }
+.project-preview:focus-visible { outline: 2px solid #CCCCCC; outline-offset: 5px; }
+.projects-enter { opacity: 0; translate: 0 73px; transition: opacity 1016ms cubic-bezier(.42, 0, .155, 1.017), translate 1016ms cubic-bezier(.42, 0, .155, 1.017); }
+.project-preview .projects-enter { translate: 0 197px; transition-duration: 794ms; }
+.projects-content.is-entered .projects-enter { opacity: 1; translate: 0 0; }
+.projects-content.is-entered .projects-title { transition-delay: 207ms; }
+.projects-content.is-entered .project-preview .projects-enter { transition-delay: var(--entry-delay); }
+@media (prefers-reduced-motion: reduce) {
+  .projects-enter { transition: none; }
+  .projects-content[data-interactive="true"] .project-preview,
+  .projects-content[data-interactive="true"] .project-preview img { transition: none; }
+}
+
+@media (max-width: 1300px) {
+  #projects-runway { height: auto; }
+  #projects-runway > #projects { position: relative; height: auto; overflow: visible; }
+  .projects-stack { padding: 64px 40px; }
+  .projects-stack .projects-eyebrow { font-size: clamp(12px, 1.5625vw, 16px); }
+  .projects-stack .projects-title {
+    margin: 12px 0 28px;
+    font-size: clamp(24px, 7.3vw, 48px);
+    line-height: 1.1;
+    background-image: none;
+  }
+  .projects-stack-list { display: flex; flex-direction: column; gap: 24px; align-items: center; }
+  .projects-stack-card {
+    display: block;
+    width: 100%;
+    max-width: 920px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 16px;
+    background: transparent;
+    overflow: hidden;
+  }
+  .projects-stack-card img { display: block; width: 100%; height: auto; }
+  .projects-stack-card:focus-visible { outline: 2px solid #CCCCCC; outline-offset: 5px; }
+}
+@media (max-width: 920px) {
+  .projects-stack-card { max-width: none; }
+}
+@media (max-width: 640px) {
+  .projects-stack { padding-inline: 16px; }
+}

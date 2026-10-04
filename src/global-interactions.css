@@ -1,0 +1,10 @@
+header {
+  transition: transform 320ms cubic-bezier(.22, .61, .36, 1);
+}
+html.header-scroll-hidden header { transform: translateY(-110px); }
+@media (max-width: 768px) {
+  html.header-scroll-hidden header { transform: translateY(-100px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  header { transition: none; }
+}

@@ -1,0 +1,35 @@
+.moorr-showcase {
+  position: relative;
+  margin-top: 60px;
+}
+.moorr-device-stage {
+  position: sticky;
+  top: var(--moorr-pin-top, 0px);
+  width: 100%;
+  aspect-ratio: 1805 / 812;
+  isolation: isolate;
+}
+.moorr-device-frame {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.moorr-screen {
+  position: absolute;
+  left: calc(365 / 1805 * 100%);
+  top: calc(56 / 812 * 100%);
+  width: calc(1147 / 1805 * 100%);
+  height: calc(660 / 812 * 100%);
+  overflow: hidden;
+  background: #fff;
+}
+.moorr-screen-content {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(var(--moorr-content-y, 0px));
+}
+.moorr-showcase + .moorr-columns { margin-top: 80px; }

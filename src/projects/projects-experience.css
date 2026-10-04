@@ -1,0 +1,21 @@
+/* One stationary background; both existing foreground runways retain their bounds. */
+#projects-experience {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  background-image: url('../../images/img/project-bg.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: clip;
+}
+#projects-experience #projects,
+#projects-experience #other-projects { background: transparent; }
+.projects-final-hold {
+  min-height: 50vh;
+  pointer-events: none;
+}
+@media (max-width: 1300px) {
+  .projects-final-hold { min-height: 25vh; }
+}

@@ -1,0 +1,14 @@
+.plumber-showcase { display: none; }
+.plumber-showcase + .moorr-columns { margin-top: 64px; }
+
+@media (width > 920px) {
+  .plumber-showcase { display: block; }
+  .plumber-showcase .moorr-device-stage { aspect-ratio: 3788 / 1636; }
+  .plumber-showcase .moorr-screen {
+    left: calc(395 / 3788 * 100%);
+    top: calc(111 / 1636 * 100%);
+    width: calc(2630 / 3788 * 100%);
+    height: calc(1320 / 1636 * 100%);
+  }
+  .plumber-showcase + .moorr-columns { margin-top: 80px; }
+}

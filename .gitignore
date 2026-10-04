@@ -1,0 +1,36 @@
+node_modules/
+dist/
+.vite/
+.pnpm-store/
+.cache/
+.tmp/
+/tmp/
+/temp/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Local environment and credential files; retain safe example templates.
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local editor, operating-system and private backup files.
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+/backup/
+/backups/
+
+# Archival HEVC masters only. Active H.264 and case-study videos stay tracked.
+/images/assets/footer-vid/desktop-footer.mp4
+/images/assets/footer-vid/mobile-footer.mp4

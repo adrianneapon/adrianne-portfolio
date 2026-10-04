@@ -1,0 +1,26 @@
+.home-video-footer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 600vh;
+  margin: 0;
+  padding: 0;
+  isolation: isolate;
+}
+.home-video-footer-viewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.home-video-footer-viewport video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}

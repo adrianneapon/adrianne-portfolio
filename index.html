@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adrianne Apon | UI/UX &amp; Website Designer</title>
+<meta name="description" content="Explore Adrianne Apon's UI/UX and website design portfolio, featuring selected projects, design process and professional experience.">
+<link rel="canonical" href="https://adrianne.design/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Adrianne Apon | UI/UX &amp; Website Designer">
+<meta property="og:description" content="Explore Adrianne Apon's UI/UX and website design portfolio, featuring selected projects, design process and professional experience.">
+<meta property="og:url" content="https://adrianne.design/">
+<meta property="og:image" content="https://adrianne.design/og-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Adrianne Apon — UI/UX Designer • Website Designer — adrianne.design">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Adrianne Apon | UI/UX &amp; Website Designer">
+<meta name="twitter:description" content="Explore Adrianne Apon's UI/UX and website design portfolio, featuring selected projects, design process and professional experience.">
+<meta name="twitter:image" content="https://adrianne.design/og-preview.png">
+<meta name="twitter:image:alt" content="Adrianne Apon — UI/UX Designer • Website Designer — adrianne.design">
+<link rel="icon" type="image/png" href="images/logoicon.png">
+<link rel="stylesheet" href="src/cursors.css">
+<script type="module" src="src/global-interactions.js"></script>
+<script type="module" src="src/home-header-contact.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.header-availability.header-email {
+  font-family: 'Intel One Mono', monospace;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: 0.03em;
+  color: #3B001B;
+}
+.header-availability.header-email.is-over-home-footer { color: #FEFAE7; }
+@font-face {
+  font-family: 'Brittany Signature';
+  src: url('images/fonts/BrittanySignature.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --white:   #ffffff;
+  --ff: 'Inter', sans-serif;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: #000;
+  color: var(--white);
+  font-family: var(--ff);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CANVAS ── */
+#grid-canvas {
+  background: #FEFAE7;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HEADER ── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo block */
+p.logo-text {
+  color: #3B001B;
+  font-family: 'Brittany Signature', cursive;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.03em;
+}
+.logo-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-block img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+}
+.logo-text { display: flex; flex-direction: column; gap: 1px; }
+
+/* ── HERO SECTION ── */
+#hero {
+  font-family: 'Oswald', sans-serif;
+  color: #3B001B;
+  --white: #3B001B;
+  position: relative;
+  z-index: 10;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 24px 80px;
+  pointer-events: none;
+}
+
+/* Eyebrow */
+.eyebrow { margin-bottom: 36px; }
+.eyebrow-text {
+  font-family: 'Brittany Signature', cursive;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  color: #3B001B;
+}
+
+/* Heading */
+.hero-h1 {
+  position: relative;
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  margin-bottom: 0;
+  max-width: 1100px;
+  padding: 0.1em 0.05em 0;
+  overflow: visible;
+  background: linear-gradient(180deg, #3B001B 0%, #3B001B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* The original inline text reserves its exact space; effects never enter flow. */
+.hero-role-canvas, .hero-role-hit, .hero-designer-canvas, .hero-designer-hit {
+  position: absolute;
+  pointer-events: none;
+}
+.hero-role-canvas, .hero-designer-canvas { display: block; }
+.hero-role-hit, .hero-designer-hit { display: none; }
+.hero-h1[data-particles] .hero-role { visibility: hidden; }
+.hero-h1[data-designer-particles] .hero-designer { visibility: hidden; }
+.hero-h1[data-particles] .hero-role-hit,
+.hero-h1[data-designer-particles] .hero-designer-hit {
+  display: block;
+  pointer-events: auto;
+}
+
+/* Supporting text */
+.hero-sub {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #3B001B;
+  max-width: 520px;
+  margin-bottom: 0;
+}
+
+/* Desktop typography targets; existing tablet/mobile sizing stays intact. */
+@media (min-width: 1025px) {
+  #hero { justify-content: flex-start; padding-top: clamp(100px, 28.32vh, 258px); }
+  #hero .eyebrow { align-self: flex-start; margin-left: max(10px, calc(50vw - 481px)); margin-bottom: -21px; }
+  #hero .eyebrow-text { font-size: 38px; }
+  #hero .hero-h1 { top: -42px; align-self: flex-start; margin-left: max(0px, calc(50vw - 491px)); font-size: 178px; font-weight: 700; line-height: normal; letter-spacing: -.08em; }
+  #hero .hero-sub { font-size: 42px; font-weight: 700; line-height: normal; letter-spacing: -.04em; max-width: 100%; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  header { padding: 14px 20px; }
+}
+@media (max-width: 1024px) {
+  .hero-h1 { font-size: 100px; line-height: 100px; -webkit-text-fill-color: #3B001B; }
+  .eyebrow { margin-bottom: 20px; }
+  .eyebrow-text { font-size: 28px; }
+  .hero-sub { font-size: 26px; letter-spacing: -0.04em; margin-top: 50px; }
+}
+@media (max-width: 359px) {
+  .hero-h1 { font-size: 84px; line-height: 84px; }
+}
+</style>
+</head>
+<body>
+
+<!-- CANVAS (behind everything) -->
+<canvas id="grid-canvas"></canvas>
+
+<!-- HEADER -->
+<header>
+  <a class="logo-block" href="#" data-desktop-href="#hero" aria-label="Adrianne Apon — Home">
+    <img src="images/logoicon.png" alt="Adrianne Apon portfolio logo">
+    <p class="logo-text">Adrianne</p>
+  </a>
+  <a class="header-availability header-email" href="mailto:hello@adrianne.design">
+    <span>hello@adrianne.design</span>
+  </a>
+
+</header>
+
+<!-- HERO -->
+<section id="hero" aria-label="Hero">
+  <div class="eyebrow">
+    <span class="eyebrow-text">Hello, I’m Adrianne</span>
+  </div>
+
+  <h1 class="hero-h1"><span class="hero-role">UIUX</span> <span class="hero-designer">Designer</span></h1>
+
+  <p class="hero-sub">
+    I love creating beautiful <span style="color: #EE5122">user interfaces</span><br>and intuitive <span style="color: #EE5122">user experiences.</span>
+  </p>
+</section>
+
+<!-- The role morphs; Designer only reacts locally to the pointer. -->
+<script type="module" src="src/desktop-polish.js"></script>
+<script>
+(function () {
+  const heading = document.querySelector('.hero-h1');
+  const role = heading.querySelector('.hero-role');
+  const suffix = heading.querySelector('.hero-designer');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const hover = matchMedia('(hover: hover) and (pointer: fine)');
+  const canvas = document.createElement('canvas');
+  const hit = document.createElement('span');
+  canvas.className = 'hero-role-canvas';
+  hit.className = 'hero-role-hit';
+  canvas.setAttribute('aria-hidden', 'true');
+  hit.setAttribute('aria-hidden', 'true');
+  const ctx = canvas.getContext('2d');
+  const mask = document.createElement('canvas');
+  const sample = mask.getContext('2d', { willReadFrequently: true });
+  if (!ctx || !sample) return;
+  heading.append(canvas, hit);
+
+  const designerCanvas = document.createElement('canvas');
+  const designerHit = document.createElement('span');
+  designerCanvas.className = 'hero-designer-canvas';
+  designerHit.className = 'hero-designer-hit';
+  designerCanvas.setAttribute('aria-hidden', 'true');
+  designerHit.setAttribute('aria-hidden', 'true');
+  const designerCtx = designerCanvas.getContext('2d');
+  heading.append(designerCanvas, designerHit);
+  let designerParticles = [], designerWidth = 0, designerHeight = 0;
+  const designerPointer = { active: false, x: 0, y: 0, clientX: 0, clientY: 0 };
+
+  const SCATTER = 360, GATHER = 1050;
+  let PAD = 150, spreadScale = 1;
+  let pointerRadius = 0;
+  const clamp = n => Math.max(0, Math.min(1, n));
+  const ease = n => 1 - Math.pow(1 - clamp(n), 3);
+  let frame = null, previous = 0, dirty = true, ready = false, disposed = false;
+  let heroVisible = true, pausedAt = null, pausedTime = 0;
+  let particles = [], targets = [], widths = [], current = 0;
+  let phase = 'idle', phaseStart = 0, armed = true;
+  let width = 0, height = 0, roleWidth = 0, roleHeight = 0;
+  let roleLeft = 0, roleTop = 0, rightLimit = 0;
+  const pointer = { active: false, x: 0, y: 0, clientX: 0, clientY: 0 };
+  let roleBounds = null, designerBounds = null;
+  const enabled = () => ready && hover.matches && !motion.matches;
+
+  function invalidatePointerBounds() { roleBounds = null; designerBounds = null; }
+
+  function updatePointerCoordinates() {
+    // Latest input is mapped once per existing render frame. Reuse bounds until
+    // scrolling, resizing, a rebuild or re-entry can change their position.
+    if (pointer.active) {
+      if (!roleBounds) roleBounds = canvas.getBoundingClientRect();
+      pointer.x = pointer.clientX - roleBounds.left;
+      pointer.y = pointer.clientY - roleBounds.top;
+    }
+    if (designerPointer.active) {
+      if (!designerBounds) designerBounds = designerCanvas.getBoundingClientRect();
+      designerPointer.x = designerPointer.clientX - designerBounds.left;
+      designerPointer.y = designerPointer.clientY - designerBounds.top;
+    }
+  }
+
+  function particleConstants(seed) {
+    return { seed, driftPhase: seed * 10, gatherDelay: seed * 160,
+      scatterDistance: (55 + seed * 40) * spreadScale };
+  }
+
+  function setHitArea() {
+    // Right-align the shorter role in the reserved slot to retain the word gap.
+    const left = roleLeft + roleWidth - widths[current];
+    hit.style.left = (left - 16) + 'px';
+    hit.style.top = (roleTop - 16) + 'px';
+    hit.style.width = (Math.min(roleLeft + roleWidth + 16, rightLimit) - left + 16) + 'px';
+    hit.style.height = (roleHeight + 32) + 'px';
+  }
+
+  function build() {
+    dirty = false;
+    invalidatePointerBounds();
+    spreadScale = innerWidth >= 1025 ? 2 : 1;
+    PAD = 150 * spreadScale;
+    const style = getComputedStyle(heading);
+    const box = heading.getBoundingClientRect();
+    const rect = role.getBoundingClientRect();
+    roleWidth = rect.width;
+    roleHeight = rect.height;
+    pointerRadius = Math.min(65, roleHeight) * spreadScale;
+    roleLeft = rect.left - box.left;
+    roleTop = rect.top - box.top;
+    rightLimit = suffix.getBoundingClientRect().left - box.left;
+    width = Math.ceil(roleWidth + PAD * 2);
+    height = Math.ceil(roleHeight + PAD * 2);
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = Math.ceil(width * dpr);
+    canvas.height = Math.ceil(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    canvas.style.left = (roleLeft - PAD) + 'px';
+    canvas.style.top = (roleTop - PAD) + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // Negative tracking shortens advance width, but the final glyph still overhangs it.
+    const inkOverhang = Math.ceil(Math.abs(parseFloat(style.letterSpacing) || 0));
+    mask.width = Math.ceil(roleWidth + inkOverhang + 4);
+    mask.height = Math.ceil(roleHeight + 4);
+    sample.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    sample.letterSpacing = style.letterSpacing;
+    sample.textBaseline = 'alphabetic';
+    sample.fillStyle = '#fff';
+    const metrics = sample.measureText('UIUX');
+    const ascent = metrics.fontBoundingBoxAscent;
+    const descent = metrics.fontBoundingBoxDescent;
+    const baseline = (roleHeight - ascent - descent) / 2 + ascent;
+    widths = ['UIUX', 'Web'].map(text => sample.measureText(text).width);
+    targets = ['UIUX', 'Web'].map((text, index) => {
+      sample.clearRect(0, 0, mask.width, mask.height);
+      sample.fillText(text, roleWidth - widths[index], baseline);
+      const pixels = sample.getImageData(0, 0, mask.width, mask.height).data;
+      const points = [];
+      for (let y = 0; y < mask.height; y += 2) {
+        for (let x = 0; x < mask.width; x += 2) {
+          const alpha = pixels[(y * mask.width + x) * 4 + 3] / 255;
+          if (alpha > 0.15) points.push({ x: PAD + x, y: PAD + y, alpha });
+        }
+      }
+      return points;
+    });
+    if (!targets[0].length || !targets[1].length) return;
+    particles = targets[current].map((target, i) => ({
+      ...target, tx: target.x, ty: target.y,
+      ...particleConstants(((i * 9301 + 49297) % 233280) / 233280)
+    }));
+    phase = 'idle';
+    heading.dataset.particles = '';
+    heading.setAttribute('aria-label', ['UIUX Designer', 'Web Designer'][current]);
+    role.setAttribute('aria-hidden', 'true');
+    suffix.setAttribute('aria-hidden', 'true');
+    setHitArea();
+    buildDesigner(style, box, dpr);
+  }
+
+  function buildDesigner(style, box, dpr) {
+    if (!designerCtx) return;
+    const rect = suffix.getBoundingClientRect();
+    const left = rect.left - box.left, top = rect.top - box.top;
+    designerWidth = Math.ceil(rect.width + PAD * 2);
+    designerHeight = Math.ceil(rect.height + PAD * 2);
+    designerCanvas.width = Math.ceil(designerWidth * dpr);
+    designerCanvas.height = Math.ceil(designerHeight * dpr);
+    designerCanvas.style.width = designerWidth + 'px';
+    designerCanvas.style.height = designerHeight + 'px';
+    designerCanvas.style.left = (left - PAD) + 'px';
+    designerCanvas.style.top = (top - PAD) + 'px';
+    designerCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    mask.width = Math.ceil(rect.width + Math.abs(parseFloat(style.letterSpacing) || 0) + 4);
+    mask.height = Math.ceil(rect.height + 4);
+    sample.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    sample.letterSpacing = style.letterSpacing;
+    sample.textBaseline = 'alphabetic';
+    sample.fillStyle = '#fff';
+    const metrics = sample.measureText('Designer');
+    const baseline = (rect.height - metrics.fontBoundingBoxAscent - metrics.fontBoundingBoxDescent) / 2
+      + metrics.fontBoundingBoxAscent;
+    sample.fillText('Designer', 0, baseline);
+    const pixels = sample.getImageData(0, 0, mask.width, mask.height).data;
+    designerParticles = [];
+    for (let y = 0; y < mask.height; y += 2) {
+      for (let x = 0; x < mask.width; x += 2) {
+        const alpha = pixels[(y * mask.width + x) * 4 + 3] / 255;
+        if (alpha > 0.15) {
+          const seed = ((designerParticles.length * 9301 + 49297) % 233280) / 233280;
+          designerParticles.push({ x: PAD + x, y: PAD + y, tx: PAD + x, ty: PAD + y, alpha, ...particleConstants(seed) });
+        }
+      }
+    }
+    // Keep the two hit areas disjoint without changing the existing role target.
+    const hitLeft = Math.max(left - 16, Math.min(roleLeft + roleWidth + 16, rightLimit));
+    designerHit.style.left = hitLeft + 'px';
+    designerHit.style.top = (top - 16) + 'px';
+    designerHit.style.width = (left + rect.width + 16 - hitLeft) + 'px';
+    designerHit.style.height = (rect.height + 32) + 'px';
+    if (designerParticles.length) heading.dataset.designerParticles = '';
+  }
+
+  function moveDesigner(event) {
+    if (!enabled() || event.pointerType === 'touch') return;
+    if (!designerPointer.active) invalidatePointerBounds();
+    designerPointer.clientX = event.clientX;
+    designerPointer.clientY = event.clientY;
+    designerPointer.active = true;
+  }
+
+  // Both words share the original repulsion, easing and particle rendering.
+  function drawParticle(context, p, x, y, cursor, follow) {
+    if (cursor.active) {
+      const dx = x - cursor.x, dy = y - cursor.y;
+      // A point outside this square cannot be inside the interaction circle.
+      if (Math.abs(dx) < pointerRadius && Math.abs(dy) < pointerRadius) {
+        const distance = Math.hypot(dx, dy);
+        if (distance > 0 && distance < pointerRadius) {
+          const force = Math.pow(1 - distance / pointerRadius, 2) * 18 * spreadScale;
+          x += dx / distance * force;
+          y += dy / distance * force;
+        }
+      }
+    }
+    p.x += (x - p.x) * follow;
+    p.y += (y - p.y) * follow;
+    context.globalAlpha = p.alpha;
+    context.fillRect(p.x, p.y, 2, 2);
+  }
+
+  function enter(event) {
+    if (!enabled() || event.pointerType === 'touch') return;
+    move(event);
+    if (!armed || phase !== 'idle' || !particles.length) return;
+    armed = false;
+    phase = 'scatter';
+    phaseStart = performance.now() - pausedTime;
+    particles.forEach(p => {
+      p.sx = p.x; p.sy = p.y;
+      const angle = Math.atan2(p.y - PAD - roleHeight / 2, p.x - PAD - roleWidth / 2);
+      const distance = p.scatterDistance;
+      p.tx = p.x + Math.cos(angle + p.seed - 0.5) * distance;
+      p.ty = p.y + Math.sin(angle + p.seed - 0.5) * distance;
+    });
+  }
+
+  function move(event) {
+    if (event.pointerType === 'touch') return;
+    if (!pointer.active) invalidatePointerBounds();
+    pointer.clientX = event.clientX;
+    pointer.clientY = event.clientY;
+    pointer.active = true;
+  }
+
+  function leave() { pointer.active = false; armed = true; }
+
+  function render(now) {
+    frame = null;
+    if (!enabled() || disposed || document.hidden || !heroVisible) return;
+    now -= pausedTime;
+    if (dirty) build();
+    updatePointerCoordinates();
+    const follow = 1 - Math.exp(-Math.min(now - (previous || now - 16), 50) / 65);
+    previous = now;
+    let elapsed = now - phaseStart;
+    if (phase === 'scatter' && elapsed >= SCATTER) {
+      current = 1 - current;
+      const old = particles;
+      particles = targets[current].map((target, i) => {
+        const p = old[Math.floor(i * old.length / targets[current].length)];
+        return { ...p, sx: p.x, sy: p.y, tx: target.x, ty: target.y, alpha: target.alpha };
+      });
+      phase = 'gather';
+      phaseStart = now;
+      elapsed = 0;
+      heading.setAttribute('aria-label', ['UIUX Designer', 'Web Designer'][current]);
+      // Keep the entry region fixed during the morph to avoid synthetic re-entry.
+    }
+    if (phase === 'gather' && elapsed >= GATHER + 160) {
+      phase = 'idle';
+      setHitArea();
+    }
+    const driftX = now * 0.0009, driftY = now * 0.00075;
+    const scatterAmount = phase === 'scatter' ? ease(elapsed / SCATTER) : 0;
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#3B001B';
+    particles.forEach(p => {
+      let x = p.tx, y = p.ty;
+      if (phase !== 'idle') {
+        const amount = phase === 'scatter' ? scatterAmount : ease((elapsed - p.gatherDelay) / GATHER);
+        x = p.sx + (p.tx - p.sx) * amount;
+        y = p.sy + (p.ty - p.sy) * amount;
+      } else {
+        x += Math.sin(driftX + p.driftPhase) * 0.35;
+        y += Math.cos(driftY + p.driftPhase) * 0.35;
+      }
+      drawParticle(ctx, p, x, y, pointer, follow);
+    });
+    ctx.globalAlpha = 1;
+    if (designerCtx) {
+      designerCtx.clearRect(0, 0, designerWidth, designerHeight);
+      designerCtx.fillStyle = '#3B001B';
+      designerParticles.forEach(p => {
+        const x = p.tx + Math.sin(driftX + p.driftPhase) * 0.35;
+        const y = p.ty + Math.cos(driftY + p.driftPhase) * 0.35;
+        drawParticle(designerCtx, p, x, y, designerPointer, follow);
+      });
+      designerCtx.globalAlpha = 1;
+    }
+    frame = requestAnimationFrame(render);
+  }
+
+  function sync() {
+    if (disposed) return;
+    invalidatePointerBounds();
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+    previous = 0;
+    const running = enabled() && heroVisible && !document.hidden;
+    if (!running && pausedAt === null) pausedAt = performance.now();
+    if (running && pausedAt !== null) {
+      pausedTime += performance.now() - pausedAt;
+      pausedAt = null;
+    }
+    if (!enabled()) {
+      current = 0; phase = 'idle'; armed = true; pointer.active = false;
+      delete heading.dataset.particles;
+      delete heading.dataset.designerParticles;
+      designerPointer.active = false;
+      if (designerCtx) designerCtx.clearRect(0, 0, designerWidth, designerHeight);
+      heading.removeAttribute('aria-label');
+      role.removeAttribute('aria-hidden');
+      suffix.removeAttribute('aria-hidden');
+      ctx.clearRect(0, 0, width, height);
+      dirty = true;
+    } else if (running) {
+      frame = requestAnimationFrame(render);
+    }
+  }
+
+  const observer = new ResizeObserver(() => { dirty = true; });
+  // Include the particle spill area; never suspend a still-visible scatter.
+  const heroVisibility = new IntersectionObserver(([entry]) => {
+    heroVisible = entry.isIntersecting;
+    sync();
+  }, { rootMargin: '300px 0px' });
+  heroVisibility.observe(document.getElementById('hero'));
+  const events = new AbortController();
+  const options = { signal: events.signal };
+  document.addEventListener('scroll', invalidatePointerBounds, { ...options, capture: true, passive: true });
+  window.addEventListener('resize', invalidatePointerBounds, { ...options, passive: true });
+  hit.addEventListener('pointerenter', enter, options);
+  hit.addEventListener('pointermove', move, options);
+  hit.addEventListener('pointerleave', leave, options);
+  designerHit.addEventListener('pointerenter', moveDesigner, options);
+  designerHit.addEventListener('pointermove', moveDesigner, options);
+  designerHit.addEventListener('pointerleave', () => { designerPointer.active = false; }, options);
+  motion.addEventListener('change', sync, options);
+  hover.addEventListener('change', sync, options);
+  document.addEventListener('visibilitychange', sync, options);
+  document.fonts.addEventListener('loadingdone', () => { dirty = true; }, options);
+  window.addEventListener('pagehide', event => {
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+    if (!event.persisted) {
+      disposed = true;
+      observer.disconnect();
+      heroVisibility.disconnect();
+      events.abort();
+    }
+  }, options);
+  window.addEventListener('pageshow', sync, options);
+  observer.observe(heading);
+  document.fonts.ready.then(() => {
+    if (disposed) return;
+    ready = true;
+    sync();
+  });
+})();
+</script>
+
+<!-- TOOLS & TECHNOLOGIES SECTION -->
+<section id="tools-section" aria-label="Tools and Technologies">
+  <div class="tools-inner">
+
+    <!-- Static label + divider -->
+    <div class="tools-label-group">
+      <p class="tools-label">Tools<br>I Work With</p>
+      <div class="tools-divider" aria-hidden="true"></div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="tools-carousel-wrap" aria-label="Logo carousel">
+      <div class="tools-track-outer">
+        <!-- Overlays share the moving viewport's clipping edge, after the spacing gap. -->
+        <div class="carousel-fade-left"  aria-hidden="true"></div>
+        <div class="carousel-fade-right" aria-hidden="true"></div>
+        <div class="tools-track" id="toolsTrack">
+          <!-- Set A -->
+          <div class="tools-logo-set" aria-hidden="false">
+            <img src="images/logos/figma.svg"       alt="Figma"       class="tool-logo">
+            <img src="images/logos/photoshop.svg"   alt="Photoshop"   class="tool-logo">
+            <img src="images/logos/jira.svg"        alt="Jira"        class="tool-logo">
+            <img src="images/logos/chatgpt.svg"     alt="ChatGPT"     class="tool-logo">
+            <img src="images/logos/codex.svg"       alt="Codex"       class="tool-logo">
+            <img src="images/logos/claude.svg"      alt="Claude"      class="tool-logo">
+            <img src="images/logos/html.svg"        alt="HTML"        class="tool-logo">
+            <img src="images/logos/css.svg"         alt="CSS"         class="tool-logo">
+            <img src="images/logos/javascript.svg"  alt="JavaScript"  class="tool-logo">
+          </div>
+          <!-- Set B (duplicate for seamless loop) -->
+          <div class="tools-logo-set" aria-hidden="true">
+            <img src="images/logos/figma.svg"       alt=""  class="tool-logo">
+            <img src="images/logos/photoshop.svg"   alt=""  class="tool-logo">
+            <img src="images/logos/jira.svg"        alt=""  class="tool-logo">
+            <img src="images/logos/chatgpt.svg"     alt=""  class="tool-logo">
+            <img src="images/logos/codex.svg"       alt=""  class="tool-logo">
+            <img src="images/logos/claude.svg"      alt=""  class="tool-logo">
+            <img src="images/logos/html.svg"        alt=""  class="tool-logo">
+            <img src="images/logos/css.svg"         alt=""  class="tool-logo">
+            <img src="images/logos/javascript.svg"  alt=""  class="tool-logo">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ── TOOLS SECTION ── */
+#tools-section {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 130px;
+  background: #3B001B;
+  overflow: hidden;
+}
+
+.tools-inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 40px;
+}
+
+/* Label */
+.tools-label-group {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-shrink: 0;
+}
+
+.tools-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 35px;
+  color: #FEFAE7;
+  white-space: nowrap;
+}
+
+/* Vertical divider */
+.tools-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.12);
+  flex-shrink: 0;
+}
+
+/* Carousel wrapper — takes remaining width */
+.tools-carousel-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative; /* needed so absolute overlays are scoped here */
+  padding-left: 40px; /* 115px gap from divider to first logo. Adrianne Adjustment: from 115px I adjusted it to 40px */
+}
+
+/* Desktop fade overlays — sit above logos, scoped inside the moving viewport */
+.carousel-fade-left,
+.carousel-fade-right {
+  display: none; /* hidden on mobile, shown on desktop below */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none;
+  z-index: 2;
+}
+.carousel-fade-left {
+  left: 0;
+  background: linear-gradient(to right, #3B001B 0%, rgba(59,0,27,0.85) 40%, rgba(59,0,27,0.4) 70%, transparent 100%);
+}
+.carousel-fade-right {
+  right: 0;
+  background: linear-gradient(to left, #3B001B 0%, rgba(59,0,27,0.85) 40%, rgba(59,0,27,0.4) 70%, transparent 100%);
+}
+
+.tools-track-outer {
+  position: relative; /* align both fades with the actual clipping boundaries */
+  overflow: hidden; /* clipping boundary — fade overlays sit above this */
+}
+
+/* The sliding track — contains two identical sets side by side */
+.tools-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.tools-logo-set {
+  display: flex;
+  align-items: center;
+  gap: 115px;
+  padding-right: 115px;
+}
+
+.tool-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (min-width: 1025px) {
+  /* Show desktop overlays */
+  .carousel-fade-left,
+  .carousel-fade-right { display: block; }
+}
+
+@media (max-width: 1024px) {
+  #tools-section { height: auto; padding: 28px 0; }
+  .tools-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding-left: 24px; }
+  .tools-label-group { gap: 24px; }
+  .tools-divider { display: none; }
+  .tools-carousel-wrap { padding-left: 0; width: 100%; }
+  .tools-logo-set { gap: 72px; padding-right: 72px; }
+  .tool-logo { height: 28px; }
+  /* Mobile uses CSS mask — keep as-is */
+  .tools-carousel-wrap {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
+  }
+}
+
+@media (max-width: 640px) {
+  .tools-inner { padding-left: 20px; gap: 24px; }
+  .tools-label-group { gap: 16px; }
+  .tools-logo-set { gap: 52px; padding-right: 52px; }
+  .tool-logo { height: 24px; }
+}
+
+/* Reduced motion: freeze carousel */
+@media (prefers-reduced-motion: reduce) {
+  .tools-track { animation: none !important; }
+}
+</style>
+
+<script>
+(function() {
+  const track    = document.getElementById('toolsTrack');
+  const section  = document.getElementById('tools-section');
+  if (!track || !section) return;
+
+  const NORMAL_SPEED = 40;   // px/sec
+  const HOVER_SPEED  = 20;   // px/sec
+
+  let currentSpeed = NORMAL_SPEED;
+  let targetSpeed  = NORMAL_SPEED;
+  let offset = 0;
+  let lastTime = null;
+  let rafTools = null;
+  let toolsVisible = false;
+  const toolsEvents = new AbortController();
+  const toolsOptions = { signal: toolsEvents.signal };
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+
+  // Width changes only with layout, not with the scrolling transform.
+  const logoSet = track.querySelector('.tools-logo-set');
+  let setWidth = logoSet ? logoSet.offsetWidth : 0;
+  const toolsSizes = new ResizeObserver(() => { setWidth = logoSet.offsetWidth; });
+  if (logoSet) toolsSizes.observe(logoSet);
+
+  function lerpSpeed(a, b, t) { return a + (b - a) * t; }
+
+  function animate(ts) {
+    rafTools = null;
+    if (!toolsVisible || document.hidden) return;
+    if (!lastTime) lastTime = ts;
+    const dt = Math.min((ts - lastTime) / 1000, 0.05); // cap delta at 50ms
+    lastTime = ts;
+
+    // Smooth speed transition
+    currentSpeed = lerpSpeed(currentSpeed, targetSpeed, 0.06);
+
+    offset += currentSpeed * dt;
+
+    const setW = setWidth;
+    if (setW > 0 && offset >= setW) {
+      offset -= setW;
+    }
+
+    track.style.transform = `translateX(${-offset}px)`;
+    rafTools = requestAnimationFrame(animate);
+  }
+
+  // Hover events
+  section.addEventListener('mouseenter', () => { targetSpeed = HOVER_SPEED; }, toolsOptions);
+  section.addEventListener('mouseleave', () => { targetSpeed = NORMAL_SPEED; }, toolsOptions);
+
+  const syncTools = () => {
+    if (document.hidden || !toolsVisible) {
+      if (rafTools !== null) cancelAnimationFrame(rafTools);
+      rafTools = null;
+      lastTime = null;
+    } else if (rafTools === null) {
+      rafTools = requestAnimationFrame(animate);
+    }
+  };
+  const toolsVisibility = new IntersectionObserver(([entry]) => {
+    toolsVisible = entry.isIntersecting;
+    syncTools();
+  });
+  toolsVisibility.observe(section);
+  document.addEventListener('visibilitychange', syncTools, toolsOptions);
+  window.addEventListener('pagehide', event => {
+    if (rafTools !== null) cancelAnimationFrame(rafTools);
+    rafTools = null;
+    lastTime = null;
+    if (!event.persisted) {
+      toolsVisibility.disconnect(); toolsSizes.disconnect(); toolsEvents.abort();
+    }
+  }, toolsOptions);
+  window.addEventListener('pageshow', syncTools, toolsOptions);
+})();
+</script>
+
+<!-- ABOUT: React is mounted only inside this lanyard container. -->
+<div id="about-experience">
+<section id="about" aria-label="About Adrianne Apon">
+  <div id="about-lanyard"></div>
+</section>
+<section id="design-process" aria-labelledby="design-process-title"></section>
+</div>
+<script type="module" src="src/about/main.jsx"></script>
+<div class="process-final-hold" aria-hidden="true"></div>
+<section id="uiux-comparison" aria-label="UI/UX design comparison"></section>
+<script type="module" src="src/comparison/main.jsx"></script>
+<section id="projects-experience" aria-label="Selected and additional projects">
+<div id="projects-runway">
+  <section id="projects" aria-label="Projects"></section>
+</div>
+<script type="module" src="src/projects/main.jsx"></script>
+<section id="other-projects" aria-label="Additional projects"></section>
+<script type="module" src="src/other-projects/main.jsx"></script>
+<div class="projects-final-hold" aria-hidden="true"></div>
+</section>
+<footer id="contact-footer" class="home-video-footer" aria-label="Footer video">
+  <div class="home-video-footer-viewport">
+    <div class="home-video-text" aria-hidden="true">
+      <h2 class="home-video-title" aria-label="WHAT SHOULD WE DESIGN NEXT?"><span aria-hidden="true">WHAT SHOULD WE</span><br><span class="home-video-heading-last" aria-hidden="true"><span class="home-video-heading-prefix">DESIGN <span class="home-video-next">NEXT</span></span><span class="home-video-now">NOW</span><span class="home-video-question">?</span></span></h2>
+      <div class="home-video-identity">
+        <div class="home-video-contact-links" inert>
+          <a href="mailto:hello@adrianne.design" aria-label="Email Adrianne"><img src="images/img/home-mail.png" alt="" width="28" height="28"></a>
+          <a href="https://www.linkedin.com/in/adrianne-apon-5b5a10193/" target="_blank" rel="noopener noreferrer" aria-label="Adrianne on LinkedIn"><img src="images/img/home-linkedin.png" alt="" width="28" height="28"></a>
+          <a href="https://wa.me/639454116411" target="_blank" rel="noopener noreferrer" aria-label="Contact Adrianne on WhatsApp"><img src="images/img/home-whatsapp.png" alt="" width="28" height="28"></a>
+        </div>
+        <p class="home-video-name">ADRIANNE APON</p>
+        <p class="home-video-role">UI/UX Designer • Website Designer</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script type="module" src="src/footer/home-video.js"></script>
+<!-- KINETIC GRID + RIPPLE SYSTEM -->
+<script>
+(function () {
+  const canvas  = document.getElementById('grid-canvas');
+  const ctx     = canvas.getContext('2d');
+  const dotTexture = document.createElement('canvas');
+  const dotCtx = dotTexture.getContext('2d');
+
+  /* ── CONFIG ── */
+  const CFG = {
+    cell:          55,
+    influenceR:    260,
+    maxWarp:       22,
+    lerpSpeed:     0.08,
+    // colours
+    lineActive:    [139, 112, 99],   // warm active grid
+    lineSky:       [175, 150, 131],  // warm highlight
+    dotOpacity:    0.028,
+    dotSpacing:    28,
+    // ripple
+    rippleSpeed:   390,
+    rippleWidth:   52,
+    rippleLife:    1.0,
+    rippleStrength:15,
+  };
+
+  /* ── STATE ── */
+  let W, H, cols, rows;
+  let points = [];         // { bx, by, cx, cy, tx, ty }
+  let mouse  = { x: -9999, y: -9999 };
+  let ripples = [];        // { x, y, t, born }
+  let rafId = null;
+  let gridVisible = true, pausedAt = null, pausedTime = 0;
+  const gridEvents = new AbortController();
+  const gridOptions = { signal: gridEvents.signal };
+  let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── RESIZE ── */
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildGrid();
+    buildDotTexture(dpr);
+  }
+
+  function buildGrid() {
+    cols = Math.ceil(W / CFG.cell) + 2;
+    rows = Math.ceil(H / CFG.cell) + 2;
+    points = [];
+    const offX = (W - (cols - 1) * CFG.cell) / 2;
+    const offY = (H - (rows - 1) * CFG.cell) / 2;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const bx = offX + c * CFG.cell;
+        const by = offY + r * CFG.cell;
+        points.push({ bx, by, cx: bx, cy: by, tx: bx, ty: by, row: r, col: c, fade: edgeFade(bx, by) });
+      }
+    }
+  }
+
+  /* ── MOUSE ── */
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }, gridOptions);
+  window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; }, gridOptions);
+
+  /* ── CLICK RIPPLE ── */
+  window.addEventListener('click', e => {
+    if (reducedMotion || !gridVisible || document.hidden) return;
+    ripples.push({ x: e.clientX, y: e.clientY, born: performance.now() - pausedTime });
+  }, gridOptions);
+  // touch
+  window.addEventListener('touchstart', e => {
+    if (reducedMotion || !gridVisible || document.hidden) return;
+    const t = e.touches[0];
+    ripples.push({ x: t.clientX, y: t.clientY, born: performance.now() - pausedTime });
+  }, { ...gridOptions, passive: true });
+
+  /* ── HELPERS ── */
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+  function bell(dist, r) {
+    // smooth bell-shaped falloff 0→1→0
+    const n = dist / r;
+    return Math.exp(-n * n * 2.5);
+  }
+
+  /* ── EDGE FADE MASK ── */
+  function edgeFade(x, y) {
+    const ex = 0.18, ey = 0.18;
+    const fx = x / W, fy = y / H;
+    const lx = clamp(fx / ex, 0, 1);
+    const rx = clamp((1 - fx) / ex, 0, 1);
+    const ty = clamp(fy / ey, 0, 1);
+    const by = clamp((1 - fy) / ey, 0, 1);
+    // smooth step
+    const ss = v => v * v * (3 - 2 * v);
+    return ss(lx) * ss(rx) * ss(ty) * ss(by);
+  }
+
+  function buildDotTexture(dpr) {
+    dotTexture.width = canvas.width;
+    dotTexture.height = canvas.height;
+    dotCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const ds = CFG.dotSpacing;
+    // Preserve both original alpha factors and the transparent backing store.
+    dotCtx.fillStyle = `rgba(140,110,92,${CFG.dotOpacity})`;
+    for (let y = ds / 2; y < H; y += ds) {
+      for (let x = ds / 2; x < W; x += ds) {
+        const fade = edgeFade(x, y);
+        if (fade < 0.01) continue;
+        dotCtx.globalAlpha = CFG.dotOpacity * fade;
+        dotCtx.beginPath();
+        dotCtx.arc(x, y, 0.7, 0, Math.PI * 2);
+        dotCtx.fill();
+      }
+    }
+    dotCtx.globalAlpha = 1;
+  }
+
+  /* ── COLOUR LERP ── */
+  function lerpColour(base, active, sky, t) {
+    // t: 0 = idle, 1 = fully active (interpolates between blue and sky based on position)
+    const r = Math.round(lerp(base[0], lerp(active[0], sky[0], 0.5), t));
+    const g = Math.round(lerp(base[1], lerp(active[1], sky[1], 0.5), t));
+    const b = Math.round(lerp(base[2], lerp(active[2], sky[2], 0.5), t));
+    return [r, g, b];
+  }
+
+  /* ── UPDATE POINTS ── */
+  function updatePoints(now) {
+    const ls = reducedMotion ? 1 : CFG.lerpSpeed;
+
+    points.forEach(p => {
+      // cursor warp target
+      const dx = p.bx - mouse.x;
+      const dy = p.by - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      let warpX = 0, warpY = 0;
+
+      if (!reducedMotion && dist < CFG.influenceR) {
+        const strength = bell(dist, CFG.influenceR) * CFG.maxWarp;
+        // push away from cursor
+        const inv = dist < 1 ? 1 : dist;
+        warpX = (dx / inv) * strength;
+        warpY = (dy / inv) * strength;
+      }
+
+      // ripple displacement
+      if (!reducedMotion) {
+        ripples.forEach(rp => {
+          const age = (now - rp.born) / 1000;
+          if (age > CFG.rippleLife) return;
+          const rdx = p.bx - rp.x;
+          const rdy = p.by - rp.y;
+          const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+          const front = age * CFG.rippleSpeed;
+          const delta = rdist - front;
+          const halfW = CFG.rippleWidth / 2;
+          if (Math.abs(delta) < halfW) {
+            const wave = Math.cos((delta / halfW) * Math.PI * 0.5);
+            const fade = 1 - age / CFG.rippleLife;
+            const rinv = rdist < 1 ? 1 : rdist;
+            const amp  = wave * fade * CFG.rippleStrength;
+            warpX += (rdx / rinv) * amp;
+            warpY += (rdy / rinv) * amp;
+          }
+        });
+      }
+
+      p.tx = p.bx + warpX;
+      p.ty = p.by + warpY;
+      p.cx = lerp(p.cx, p.tx, ls);
+      p.cy = lerp(p.cy, p.ty, ls);
+    });
+
+    // prune dead ripples
+    ripples = ripples.filter(r => (now - r.born) / 1000 < CFG.rippleLife);
+  }
+
+  /* ── GET POINT ── */
+  function pt(r, c) {
+    return points[r * cols + c];
+  }
+
+  /* ── LINE COLOUR ── */
+  function lineColour(p1, p2) {
+    // proximity to mouse along midpoint
+    const mx2 = (p1.cx + p2.cx) / 2;
+    const my2 = (p1.cy + p2.cy) / 2;
+    const d   = Math.sqrt((mx2 - mouse.x) ** 2 + (my2 - mouse.y) ** 2);
+    const t   = reducedMotion ? 0 : clamp(1 - d / CFG.influenceR, 0, 1);
+    const fade = p1.fade * p2.fade;
+    if (t < 0.01) return `rgba(120,90,72,${0.10 * fade})`;
+    const [r, g, b] = lerpColour([120, 90, 72], CFG.lineActive, CFG.lineSky, t);
+    const alpha = lerp(0.10, 0.65, t) * fade;
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+
+  /* ── NODE COLOUR ── */
+  function nodeColour(p) {
+    const d = Math.sqrt((p.cx - mouse.x) ** 2 + (p.cy - mouse.y) ** 2);
+    const t = reducedMotion ? 0 : clamp(1 - d / CFG.influenceR, 0, 1);
+    const fade = p.fade;
+    if (t < 0.01) return `rgba(140,110,92,${0.16 * fade})`;
+    const [r, g, b] = lerpColour([140, 110, 92], CFG.lineActive, CFG.lineSky, t);
+    const alpha = lerp(0.16, 0.9, t * t) * fade;
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+
+  /* ── DRAW ── */
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+
+    /* Copy cached dots pixel-for-pixel, including at fractional DPR. */
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalAlpha = 1;
+    ctx.drawImage(dotTexture, 0, 0);
+    ctx.restore();
+
+    /* grid lines — horizontal */
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols - 1; c++) {
+        const p1 = pt(r, c), p2 = pt(r, c + 1);
+        ctx.beginPath();
+        ctx.moveTo(p1.cx, p1.cy);
+        ctx.lineTo(p2.cx, p2.cy);
+        ctx.strokeStyle = lineColour(p1, p2);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    /* grid lines — vertical */
+    for (let c = 0; c < cols; c++) {
+      for (let r = 0; r < rows - 1; r++) {
+        const p1 = pt(r, c), p2 = pt(r + 1, c);
+        ctx.beginPath();
+        ctx.moveTo(p1.cx, p1.cy);
+        ctx.lineTo(p2.cx, p2.cy);
+        ctx.strokeStyle = lineColour(p1, p2);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    /* nodes */
+    points.forEach(p => {
+      const fade = p.fade;
+      if (fade < 0.01) return;
+      const d = Math.sqrt((p.cx - mouse.x) ** 2 + (p.cy - mouse.y) ** 2);
+      const t = reducedMotion ? 0 : clamp(1 - d / CFG.influenceR, 0, 1);
+      const radius = lerp(1.5, 3.5, t * t);
+      ctx.beginPath();
+      ctx.arc(p.cx, p.cy, radius, 0, Math.PI * 2);
+      ctx.fillStyle = nodeColour(p);
+      ctx.fill();
+      // glow on active nodes
+      if (t > 0.3) {
+        ctx.beginPath();
+        ctx.arc(p.cx, p.cy, radius * 2.5, 0, Math.PI * 2);
+        const [r, g, b] = lerpColour([140,110,92], CFG.lineActive, CFG.lineSky, t);
+        ctx.fillStyle = `rgba(${r},${g},${b},${0.12 * t * fade})`;
+        ctx.fill();
+      }
+    });
+  }
+
+  /* ── LOOP ── */
+  function loop(now) {
+    rafId = null;
+    if (!gridVisible || document.hidden) return;
+    now -= pausedTime;
+    updatePoints(now);
+    draw(now);
+    rafId = requestAnimationFrame(loop);
+  }
+
+  /* ── INIT ── */
+  function syncGrid() {
+    const running = gridVisible && !document.hidden;
+    if (running) {
+      if (pausedAt !== null) {
+        pausedTime += performance.now() - pausedAt;
+        pausedAt = null;
+      }
+      if (rafId === null) rafId = requestAnimationFrame(loop);
+    } else {
+      if (pausedAt === null) pausedAt = performance.now();
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+  const gridVisibility = new IntersectionObserver(([entry]) => {
+    gridVisible = entry.isIntersecting;
+    syncGrid();
+  });
+  gridVisibility.observe(document.getElementById('hero'));
+  document.addEventListener('visibilitychange', syncGrid, gridOptions);
+  window.addEventListener('resize', resize, gridOptions);
+  window.addEventListener('pagehide', event => {
+    if (rafId !== null) cancelAnimationFrame(rafId);
+    rafId = null;
+    if (!event.persisted) { gridVisibility.disconnect(); gridEvents.abort(); }
+  }, gridOptions);
+  window.addEventListener('pageshow', syncGrid, gridOptions);
+  resize();
+  syncGrid();
+})();
+</script>
+
+</body>
+</html>

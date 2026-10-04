@@ -1,0 +1,47 @@
+.mobile-showcase { display: none; }
+
+@media (max-width: 920px) {
+  .moorr-showcase, .cafe-showcase { display: none; }
+  .mobile-showcase { display: block; position: relative; margin-top: 60px; }
+  .mobile-showcase ~ .moorr-columns { margin-top: 80px; }
+  .mobile-device-stage {
+    position: sticky;
+    top: var(--mobile-pin-top, 0px);
+    width: 100%;
+    /* Keep the complete device visible even in tablet/landscape viewports. */
+    max-width: calc(100svh * var(--device-width) / var(--device-height));
+    margin-inline: auto;
+    aspect-ratio: var(--device-width) / var(--device-height);
+    isolation: isolate;
+  }
+  .mobile-device-frame {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+  .mobile-device-screen {
+    position: absolute;
+    left: calc(64 / var(--device-width) * 100%);
+    top: calc(94 / var(--device-height) * 100%);
+    width: calc(878 / var(--device-width) * 100%);
+    height: calc(1902 / var(--device-height) * 100%);
+    /* Extend beneath the bezel; the frame defines the visible screen curve. */
+    border-radius: 11.390% / 5.258%;
+    overflow: hidden;
+    background: #fff;
+  }
+  /* Moorr's bottom navigation belongs to the static frame. */
+  .mobile-showcase--moorr .mobile-device-screen {
+    height: calc(1710 / var(--device-height) * 100%);
+    border-radius: 11.390% 11.390% 0 0 / 5.848% 5.848% 0 0;
+  }
+  .mobile-device-content {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: translateY(var(--mobile-content-y, 0px));
+  }
+}

@@ -1,0 +1,8 @@
+.process-particles {
+  position: absolute;
+  left: -180px;
+  top: -180px;
+  width: calc(100% + 360px);
+  height: calc(min(100%, 620px) + 180px);
+  pointer-events: none;
+}

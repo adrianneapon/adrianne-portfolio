@@ -1,0 +1,17 @@
+/* Native cursors retain normal click coordinates and need no animation loop. */
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --cursor-arrow: url('../images/assets/cursors/Circle.svg') 10 10, auto;
+    --cursor-pointer: pointer;
+    --cursor-grab: grab;
+    --cursor-grabbing: grabbing;
+  }
+  html, body { cursor: var(--cursor-arrow); }
+  a, button, [role='button'], summary { cursor: var(--cursor-pointer); }
+  [draggable='true'] { cursor: var(--cursor-grab); }
+  [draggable='true']:active { cursor: var(--cursor-grabbing); }
+}
+
+/* Hide only the scrollbars; wheel, touch and keyboard scrolling remain enabled. */
+html, body { scrollbar-width: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }

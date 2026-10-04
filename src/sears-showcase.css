@@ -1,0 +1,10 @@
+/* Reuse the existing device presentation; only this asset's bounds differ. */
+@media (width > 920px) {
+  .sears-showcase { aspect-ratio: 18050 / 8260; }
+  .sears-showcase .cafe-screen {
+    left: calc(1980 / 18050 * 100%);
+    top: calc(560 / 8260 * 100%);
+    width: calc(13140 / 18050 * 100%);
+    height: calc(6590 / 8260 * 100%);
+  }
+}

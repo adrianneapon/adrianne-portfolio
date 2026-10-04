@@ -1,0 +1,170 @@
+.about-content {
+  position: absolute;
+  /* Include About's existing 1px top border in the specified top offsets. */
+  inset: -1px 0 0;
+  z-index: 3;
+  pointer-events: none;
+  font-family: 'Poppins', sans-serif;
+  color: #3B001B;
+}
+.about-intro {
+  position: absolute;
+  top: 140px;
+  left: 40px;
+  width: 500px;
+}
+.about-heading {
+  width: max-content;
+  font-family: 'Oswald', sans-serif;
+  font-size: 60px;
+  line-height: 60px;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  white-space: nowrap;
+  background: none;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #3B001B;
+}
+.about-description {
+  width: 480px;
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 400;
+  color: #3B001B;
+  --entrance-delay: 160ms;
+}
+.about-career {
+  position: absolute;
+  top: 150px;
+  right: 40px;
+  text-align: right;
+}
+.about-career-title {
+  font: 600 32px/normal 'Oswald', sans-serif;
+  letter-spacing: -.02em;
+  color: #3B001B;
+}
+.about-career-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  list-style: none;
+  margin-top: 40px;
+}
+.about-career-item {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+}
+.about-career-text { white-space: nowrap; }
+.about-career-role,
+.about-career-company {
+  font-size: 16px;
+  line-height: 32px;
+}
+.about-career-role { font-weight: 600; color: #3B001B; }
+.about-career-company { font-weight: 400; color: #3B001B; }
+.about-metrics {
+  position: absolute;
+  bottom: 43px;
+  left: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 88px;
+  pointer-events: auto;
+}
+.about-metric { text-align: center; }
+.about-metric-number {
+  display: grid;
+  font: 600 48px/normal 'Oswald', sans-serif;
+  color: #3B001B;
+}
+.about-metric-number > span { grid-area: 1 / 1; }
+.about-metric-reserve { visibility: hidden; }
+.about-metric-label {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #3B001B;
+}
+.about-reveal-left,
+.about-reveal-right {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--entrance-delay, 0ms);
+}
+.about-reveal-right { transform: translateX(32px); }
+.about-content.is-visible .about-reveal-left,
+.about-content.is-visible .about-reveal-right { opacity: 1; transform: translateX(0); }
+.about-content.is-visible .about-intro,
+.about-content.is-visible .about-career { pointer-events: auto; }
+
+/* This pass covers the supplied desktop composition only. */
+@media (min-width: 1440px) {
+  .about-intro { top: 53px; }
+  .about-content { font-family: 'Poppins', sans-serif; color: #3B001B; }
+  .about-heading {
+    font: 700 60px/60px 'Oswald', sans-serif;
+    letter-spacing: -.03em;
+    background: none;
+    color: #3B001B;
+  }
+  .about-description { font: 400 16px/32px 'Poppins', sans-serif; margin-top: 24px; color: #3B001B; }
+  .about-metrics { gap: 90px; }
+  .about-metric-number { font: 600 48px/normal 'Oswald', sans-serif; color: #3B001B; }
+  .about-metric-label { font: 400 16px/20px 'Poppins', sans-serif; color: #3B001B; }
+  .about-career-title { font: 600 32px/normal 'Oswald', sans-serif; letter-spacing: -.02em; color: #3B001B; }
+  .about-career-role { font: 600 16px/32px 'Poppins', sans-serif; color: #3B001B; }
+  .about-career-company { font: 400 16px/32px 'Poppins', sans-serif; color: #3B001B; }
+  body .about-cursor-helper { color: #3B001B; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-reveal-left, .about-reveal-right { transition: none; transform: none; }
+}
+
+@media (max-width: 1289px) {
+  .about-content {
+    position: relative;
+    inset: auto;
+    display: block;
+    min-height: calc(100vh - 1px);
+    padding: 299px 16px 30px;
+  }
+  .about-intro { position: static; width: auto; }
+  .about-description { width: auto; margin-top: 12px; }
+  .about-career {
+    position: static;
+    margin-top: 20px;
+    text-align: left;
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .about-content.is-visible .about-career { opacity: 1; transform: translateX(0); }
+  /* Animate the mobile group once, without the desktop per-row stagger. */
+  .about-career .about-reveal-right { opacity: 1; transform: none; transition: none; }
+  .about-career-list { gap: 4px; }
+  .about-career-item { width: calc(100% - 102px); justify-content: flex-start; gap: 12px; }
+  .about-career-text { white-space: normal; min-width: 0; }
+  .about-metrics { left: auto; right: 16px; bottom: 53px; flex-direction: column; align-items: flex-end; gap: 24px; }
+  .about-metric { text-align: right; }
+  .about-metric-label { margin-top: 4px; }
+}
+@media (max-width: 1289px) and (prefers-reduced-motion: reduce) {
+  .about-career { transition: none; transform: none; }
+}
+@media (max-width: 640px) {
+  .about-description { font-size: 12px; line-height: 20px; }
+  .about-career-role, .about-career-company { font-size: 12px; line-height: 24px; }
+}
+@media (width < 460px) {
+  .about-heading {
+    font-size: clamp(36px, calc(17vw - 18px), 60px);
+    line-height: 1;
+  }
+}

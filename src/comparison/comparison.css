@@ -1,0 +1,109 @@
+#uiux-comparison {
+  position: relative;
+  z-index: 10;
+  height: auto;
+  background: #FEFAE7;
+}
+.uiux-comparison-runway { position: relative; height: 100vh; }
+.uiux-reveal-stage { width: 100%; height: 100%; }
+.uiux-reveal-composition {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding-top: 201px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.uiux-compare {
+  flex: none;
+  width: min(1253px, calc(100% - 32px));
+  aspect-ratio: 1253 / 594;
+  padding: 2px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #3B001B;
+  box-shadow: 0 12px 32px rgba(59, 0, 27, 0.25);
+}
+.uiux-compare-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: var(--cursor-grab, ew-resize);
+}
+.uiux-compare-images {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+.uiux-compare-images img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+.uiux-compare-wireframe { clip-path: inset(0 calc(100% - var(--reveal)) 0 0); }
+.uiux-compare-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--reveal);
+  width: 4px;
+  transform: translateX(-50%);
+  background: #3B001B;
+  pointer-events: none;
+}
+.uiux-compare-handle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 3px solid #3B001B;
+  border-radius: 50%;
+  color: #3B001B;
+  background: #FEFAE7;
+  box-shadow: 0 0 0 6px rgba(59, 0, 27, 0.25), 0 0 18px rgba(59, 0, 27, 0.25);
+  pointer-events: auto;
+  touch-action: none;
+  cursor: var(--cursor-grab, ew-resize);
+  transition: box-shadow 160ms ease;
+}
+.uiux-compare-handle:hover,
+.is-dragging .uiux-compare-handle { box-shadow: 0 0 0 6px rgba(59, 0, 27, 0.25), 0 0 24px rgba(59, 0, 27, 0.25); }
+.uiux-compare-handle:focus { outline: none; }
+.uiux-compare-handle:focus-visible:not([data-pointer-focus]) { outline: 2px solid #FBFAF9; outline-offset: 8px; }
+.uiux-compare.is-dragging .uiux-compare-viewport,
+.uiux-compare.is-dragging .uiux-compare-handle { cursor: var(--cursor-grabbing, ew-resize); }
+/* Scale only the new component when the target desktop frame cannot fit. */
+@media (max-height: 794px) {
+  .uiux-reveal-composition { padding-top: 0; align-items: center; }
+  .uiux-compare { width: min(1253px, calc(100% - 32px), calc((100vh - 48px) * 1253 / 594)); }
+}
+/* A half-height sticky anchor pins the full composition at halfway entry.
+   Its bottom constraint releases it at the end of the same 350vh section. */
+@media (min-width: 769px) and (min-height: 795px) {
+  .uiux-comparison-runway { height: 350vh; }
+  .uiux-reveal-stage { position: sticky; top: 50vh; height: 50vh; }
+  .uiux-reveal-composition { height: 100vh; transform: translateY(-50vh); }
+  .uiux-compare {
+    transform: translateY(var(--compare-offset, 50px)) perspective(1300px) rotateX(var(--compare-rotation, 60deg)) scale(var(--compare-scale, 0.92));
+    transform-origin: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .uiux-compare { transform: none; }
+  .uiux-compare-handle { transition: none; }
+}

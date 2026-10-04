@@ -1,0 +1,117 @@
+#other-projects {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  height: 330vh;
+  background: #000000;
+}
+.other-projects-stage {
+  --gallery-gutter: 40px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  perspective: var(--gallery-perspective, 2000px);
+  perspective-origin: center;
+  --gallery-rotate: 75deg;
+  --gallery-scale: .92;
+  --gallery-offset: 12vh;
+  --gallery-left: -4%;
+  --gallery-center: 7%;
+  --gallery-right: -3%;
+  --gallery-image-opacity: .5;
+  --gallery-read-offset: 0px;
+}
+.other-projects-heading-position {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+}
+.other-projects-heading {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1920px;
+  height: 911px;
+  transform: translateX(-50%) scale(var(--gallery-heading-scale, 1));
+  transform-origin: top center;
+  text-align: center;
+}
+.other-projects-heading p { position: absolute; top: 242px; width: 100%; margin: 0; color: #3B001B; font: 400 16px/24px 'Intel One Mono', monospace; }
+.other-projects-heading h2 { position: absolute; top: 289px; width: 100%; margin: 0; font: 700 95px/80px Oswald, sans-serif; letter-spacing: -0.04em; background: none; background-clip: text; -webkit-background-clip: text; color: #3B001B; }
+.other-projects-heading h2 { padding-bottom: .2em; margin-bottom: -.2em; background-image: none; }
+.other-projects-heading-position.is-entered .projects-enter { opacity: 1; translate: 0 0; }
+.other-projects-heading-position.is-entered h2 { transition-delay: 207ms; }
+.other-projects-gallery {
+  width: var(--gallery-width, 80vw);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gallery-gap, 16px);
+  transform: translateY(calc(var(--gallery-offset) - var(--gallery-read-offset))) rotateX(var(--gallery-rotate)) scale(var(--gallery-scale));
+  transform-origin: center;
+  transform-style: preserve-3d;
+}
+.other-projects-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gallery-gap, 16px);
+  transform: translateY(var(--gallery-left));
+}
+.other-projects-column:nth-child(2) { transform: translateY(var(--gallery-center)); }
+.other-projects-column:nth-child(3) { transform: translateY(var(--gallery-right)); }
+.other-projects-column img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  opacity: var(--gallery-image-opacity);
+}
+@media (max-width: 640px) {
+  .other-projects-stage { --gallery-gutter: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .other-projects-gallery { transform: translateY(calc(-1 * var(--gallery-read-offset))); }
+  .other-projects-column { transform: none; }
+}
+
+@media (max-width: 1300px) {
+  .other-responsive-heading {
+    position: absolute;
+    top: 62px;
+    left: 16px;
+    right: 16px;
+    text-align: center;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .other-responsive-heading p { margin: 0; color: #3B001B; font: 400 clamp(12px, 1.5625vw, 16px)/24px 'Intel One Mono', monospace; }
+  .other-responsive-heading h2 {
+    margin: 8px 0 0;
+    padding-bottom: .2em;
+    font: 800 clamp(24px, 7.3vw, 48px)/1.1 Inter, sans-serif;
+    background: none;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: #3B001B;
+  }
+  .other-responsive-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  .other-responsive-gallery {
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    transform: translateY(var(--responsive-gallery-read, 0px));
+  }
+  .other-responsive-column { display: flex; flex-direction: column; gap: 12px; transform: translateY(var(--responsive-column-left, 0px)); }
+  .other-responsive-column:nth-child(2) { transform: translateY(var(--responsive-column-right, 0px)); }
+  .other-responsive-column img { display: block; width: 100%; height: auto; user-select: none; }
+}
+@media (max-width: 640px) {
+  .other-responsive-gallery { left: 16px; right: 16px; gap: 8px; }
+  .other-responsive-column { gap: 8px; }
+}

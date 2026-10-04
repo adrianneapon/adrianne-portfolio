@@ -1,0 +1,49 @@
+#about {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100vh;
+  overflow: visible;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: #FEFAE7;
+}
+#about-experience {
+  position: relative;
+  z-index: 10;
+}
+#design-process { background: #FEFAE7; }
+#about-lanyard {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+}
+.lanyard-viewport canvas { display: block; }
+.lanyard-coverage {
+  position: absolute;
+  inset: 1px 0 0;
+  z-index: 11;
+  pointer-events: none;
+}
+.lanyard-viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  pointer-events: none;
+}
+@media (max-width: 1289px) {
+  #about { height: auto; min-height: 100vh; }
+  #about-lanyard { position: absolute; inset: 0; }
+}
+@media (min-width: 641px) and (max-width: 1289px) {
+  /* Let content flow while preserving the lanyard's original viewport reference. */
+  #about-lanyard { height: calc(100vh - 1px); }
+}
+.lanyard-error {
+  position: absolute;
+  inset: 45% 24px auto;
+  text-align: center;
+  color: #3B001B;
+  font-size: 14px;
+}

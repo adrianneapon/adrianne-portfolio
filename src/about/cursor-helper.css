@@ -1,0 +1,13 @@
+.about-cursor-helper {
+  position: fixed;
+  z-index: 101;
+  pointer-events: none;
+  transform: translateY(-50%);
+  color: #3B001B;
+  font: 400 16px/1.4 Inter, sans-serif;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
+  .about-cursor-helper { display: none; }
+}

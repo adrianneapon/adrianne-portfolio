@@ -1,0 +1,11 @@
+Original card.glb and lanyard.png: React Bits Lanyard.
+https://github.com/DavidHDev/react-bits/tree/main/src/assets/lanyard
+License: REFERENCE-LICENSE.md
+
+The About component uses the original card, clip and clamp geometry and UVs.
+Its rope joints, kinematic drag and dynamic release follow the supplied React
+Bits Lanyard reference. The blue nylon material is generated at runtime.
+
+Artwork sources (unchanged):
+images/img/ID front.png
+images/img/ID back.png

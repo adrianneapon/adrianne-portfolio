@@ -1,0 +1,44 @@
+.header-availability {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #3B001B;
+    font: normal 500 16px/normal 'Poppins', sans-serif;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+@media (min-width: 1025px) and (pointer: fine) and (hover: hover) {
+  header .logo-block { gap: 0; }
+  header .logo-block img { width: 50px; height: 50px; flex: 0 0 50px; }
+  header .logo-text {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 0;
+    margin-left: 0;
+    opacity: 0;
+    transition: max-width 280ms cubic-bezier(.22, .61, .36, 1),
+      margin-left 280ms cubic-bezier(.22, .61, .36, 1), opacity 220ms ease;
+  }
+  header .logo-block:hover .logo-text,
+  header .logo-block:focus-visible .logo-text {
+    max-width: 240px;
+    margin-left: 16px;
+    opacity: 1;
+  }
+}
+@media (min-width: 1025px) and (pointer: fine) and (hover: hover) and (prefers-reduced-motion: reduce) {
+  header .logo-text { transition: none; }
+}
+
+@media (max-width: 768px) {
+  .header-availability { right: 20px; }
+}
+@media (max-width: 420px) {
+  .header-availability { display: none; }
+}

@@ -1,0 +1,151 @@
+.header-availability.header-email {
+  font-family: 'Intel One Mono', monospace;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: 0.03em;
+  color: #3B001B;
+}
+
+@font-face {
+  font-family: 'Brittany Signature';
+  src: url('../images/fonts/BrittanySignature.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --white: #ffffff; --ff: 'Inter', sans-serif; }
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #FEFAE7;
+  color: var(--white);
+  font-family: var(--ff);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Exact base header styles from index.html; shared behavior/overrides are
+   supplied unchanged by global-interactions.js and desktop-polish.js. */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+p.logo-text {
+  color: #3B001B;
+  font-family: 'Brittany Signature', cursive;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.03em;
+}
+.logo-block { display: flex; align-items: center; gap: 16px; text-decoration: none; flex-shrink: 0; }
+.logo-block img { width: 50px; height: 50px; object-fit: contain; display: block; }
+.logo-text { display: flex; flex-direction: column; gap: 1px; }
+@media (max-width: 768px) {
+  header { padding: 14px 20px; }
+}
+
+.projects-page { padding: 126px 40px 0; }
+.projects-page + #contact-footer { margin-top: 80px; }
+.projects-page-eyebrow {
+  font: 500 16px/24px 'Intel One Mono', monospace;
+  letter-spacing: 0;
+  color: #3B001B;
+}
+#projects-page-title {
+  margin-top: 3px;
+  font: 700 48px/54px 'Oswald', sans-serif;
+  letter-spacing: -0.04em;
+  color: #3B001B;
+}
+.projects-page-separator {
+  margin-top: 40px;
+  height: 1px;
+  border: 0;
+  background: #3B001B;
+  opacity: 0.5;
+}
+
+.moorr-case-study { margin-top: 40px; color: #3B001B; }
+.cafe-separator { margin-top: 70px; }
+.cafe-case-study { margin-top: 60px; }
+.moorr-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 24px;
+  font: 700 95px/95px 'Oswald', sans-serif;
+  letter-spacing: -0.04em;
+}
+.moorr-number { color: #FEFAE7; -webkit-text-stroke: 1.5px #3B001B; }
+.moorr-project-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.moorr-project-link img { width: 28px; height: 28px; flex: 0 0 28px; }
+.moorr-project-name { position: relative; }
+.moorr-project-name::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #3B001B;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+.moorr-project-link:hover .moorr-project-name::after,
+.moorr-project-link:focus-visible .moorr-project-name::after { transform: scaleX(1); }
+.moorr-overview {
+  margin-top: 40px;
+  font: 400 24px/40px 'Poppins', sans-serif;
+  letter-spacing: 0;
+}
+.moorr-overview strong { font-weight: 600; }
+.moorr-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 100px;
+  margin-top: 64px;
+}
+.moorr-columns h3 { font: 700 28px/34px 'Oswald', sans-serif; letter-spacing: -0.04em; }
+.moorr-columns p { margin-top: 16px; font: 500 18px/24px 'Poppins', sans-serif; letter-spacing: 0; }
+.moorr-columns ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  padding-left: 1.25em;
+  font: 400 16px/24px 'Poppins', sans-serif;
+  letter-spacing: 0;
+}
+@media (max-width: 1200px) {
+  .moorr-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1100px) {
+  .moorr-title-row { font-size: 70px; line-height: 70px; }
+  .moorr-overview { font-size: 18px; line-height: 34px; }
+}
+@media (max-width: 640px) {
+  .moorr-columns { grid-template-columns: minmax(0, 1fr); gap: 50px; }
+}
+@media (max-width: 439px) {
+  .moorr-title-row { font-size: 50px; line-height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .moorr-project-name::after { transition: none; }
+}
