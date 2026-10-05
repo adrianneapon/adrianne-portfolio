@@ -24,6 +24,15 @@ header .header-availability { right: 104px; }
   transition: transform 250ms ease;
 }
 .compact-menu-button::after { transform: translateY(5px); }
+.compact-menu-button[aria-expanded="true"] {
+  box-sizing: border-box;
+  border: 1px solid #3B001B;
+}
+.compact-menu-button[aria-expanded="true"]::before,
+.compact-menu-button[aria-expanded="true"]::after {
+  left: 9px;
+  top: 18px;
+}
 .compact-menu-button[aria-expanded="true"]::before { transform: rotate(45deg); }
 .compact-menu-button[aria-expanded="true"]::after { transform: rotate(-45deg); }
 .compact-menu-panel {
