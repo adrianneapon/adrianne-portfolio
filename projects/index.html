@@ -50,8 +50,9 @@
       const arrival = JSON.parse(sessionStorage.getItem('portfolio-menu-arrival'));
       sessionStorage.removeItem('portfolio-menu-arrival');
       if (arrival && arrival.expires > Date.now() && arrival.destination === location.pathname + location.search + location.hash) {
-        document.documentElement.classList.add('header-scroll-hidden', 'menu-navigation-pending');
-        document.documentElement.setAttribute('data-menu-arrival', '');
+        const caseStudies = arrival.kind === 'case-studies' && arrival.destination === '/projects/';
+        if (!caseStudies) document.documentElement.classList.add('header-scroll-hidden', 'menu-navigation-pending');
+        document.documentElement.setAttribute('data-menu-arrival', caseStudies ? 'case-studies' : '');
       }
     } catch { /* Storage restrictions must not prevent the page from loading. */ }
   </script>

@@ -13,12 +13,15 @@ const scrollPosition = () => Math.max(0, document.body.scrollTop, root.scrollTop
 let lastScroll = scrollPosition();
 let scrollTravel = 0;
 let scrollFrame = 0;
-let menuNavigation = root.classList.contains('menu-navigation-pending');
-const beginMenuNavigation = () => {
+let menuNavigation = root.classList.contains('menu-navigation-pending') || root.getAttribute('data-menu-arrival') === 'case-studies';
+const beginMenuNavigation = (keepHeaderVisible = false) => {
   menuNavigation = true;
   lastScroll = scrollPosition();
   scrollTravel = 0;
-  root.classList.add('header-scroll-hidden', 'menu-navigation-pending');
+  // Case Studies holds the visible state while settling; the same genuine-input
+  // listeners below release it. Other menu destinations keep their hidden state.
+  root.classList.toggle('header-scroll-hidden', !keepHeaderVisible);
+  root.classList.toggle('menu-navigation-pending', !keepHeaderVisible);
 };
 const finishMenuNavigation = () => {
   lastScroll = scrollPosition();

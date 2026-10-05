@@ -20,6 +20,7 @@ export function installHeaderMenu(header, beginNavigation, finishNavigation) {
   const button = navigation.querySelector('button');
   const panel = navigation.querySelector('.compact-menu-panel');
   let arrivalPending = document.documentElement.hasAttribute('data-menu-arrival');
+  const caseStudiesArrival = document.documentElement.getAttribute('data-menu-arrival') === 'case-studies';
   let frame = 0;
   const setOpen = open => {
     panel.hidden = !open;
@@ -28,7 +29,7 @@ export function installHeaderMenu(header, beginNavigation, finishNavigation) {
     header.classList.toggle('header-menu-open', open);
   };
   const close = () => setOpen(false);
-  const jump = url => {
+  const jump = (url, keepHeaderVisible = false) => {
     const target = url.hash ? document.getElementById(url.hash.slice(1)) : null;
     if (url.hash && !target) return;
     const scroller = getComputedStyle(document.body).overflowY === 'auto' ? document.body : document.scrollingElement;
@@ -37,7 +38,7 @@ export function installHeaderMenu(header, beginNavigation, finishNavigation) {
     const flowTarget = target?.id === 'projects' ? document.getElementById('projects-runway') : target;
     const offset = target ? parseFloat(getComputedStyle(target).scrollMarginTop) || 0 : 0;
     const top = flowTarget ? Math.max(0, scroller.scrollTop + flowTarget.getBoundingClientRect().top - offset) : 0;
-    beginNavigation();
+    beginNavigation(keepHeaderVisible);
     if (!setDesktopScrollPosition(top)) scroller.scrollTo({ top, behavior: 'instant' });
     // Let existing scroll listeners observe the jump before dropping the no-flash class.
     cancelAnimationFrame(frame);
@@ -60,13 +61,16 @@ export function installHeaderMenu(header, beginNavigation, finishNavigation) {
     link.blur();
     arrivalPending = false;
     const url = new URL(link.href);
+    const caseStudies = link === panel.querySelector('a[href="/projects/"]');
     if (url.pathname === location.pathname) {
       if (location.href !== url.href) history.pushState(null, '', url);
-      jump(url);
+      jump(url, caseStudies);
     } else {
       // A single-use destination marker; consumed in <head> before the next header paints.
-      sessionStorage.setItem('portfolio-menu-arrival', JSON.stringify({ destination: url.pathname + url.search + url.hash, expires: Date.now() + 30000 }));
-      beginNavigation();
+      try {
+        sessionStorage.setItem('portfolio-menu-arrival', JSON.stringify({ destination: url.pathname + url.search + url.hash, expires: Date.now() + 30000, kind: caseStudies ? 'case-studies' : 'anchor' }));
+      } catch { /* Restricted storage must not block navigation. */ }
+      beginNavigation(caseStudies);
       location.assign(url.href);
     }
   });
@@ -83,7 +87,7 @@ export function installHeaderMenu(header, beginNavigation, finishNavigation) {
         if (!arrivalPending) return;
         arrivalPending = false;
         document.documentElement.removeAttribute('data-menu-arrival');
-        jump(new URL(location.href));
+        jump(new URL(location.href), caseStudiesArrival);
       });
     });
   }

@@ -13,7 +13,9 @@ const measure = () => heading.style.setProperty('--footer-now-width', `${now.get
 const sizes = new ResizeObserver(measure);
 sizes.observe(now);
 measure();
-// A sustained, mostly visible footer visit starts the one-time word change.
+// Phone browser controls can leave less than 90% of the 100vh footer visible
+// even while its headline is fully visible. Keep the desktop footer trigger.
+const phoneVisit = matchMedia('(max-width: 768px), (pointer: coarse)');
 const visits = new IntersectionObserver(([entry]) => {
   clearTimeout(timer);
   if (completed || entry.intersectionRatio < .9) return;
@@ -25,7 +27,13 @@ const visits = new IntersectionObserver(([entry]) => {
     sizes.disconnect();
   }, 1500);
 }, { threshold: [.9] });
-visits.observe(footer);
+const observeVisit = () => {
+  clearTimeout(timer);
+  visits.disconnect();
+  if (!completed && !disposed) visits.observe(phoneVisit.matches ? heading : footer);
+};
+phoneVisit.addEventListener('change', observeVisit);
+observeVisit();
 let marqueeVisible = false;
 const syncMarquee = () => footer.classList.toggle('marquee-visible', marqueeVisible && !document.hidden);
 const marqueeVisibility = new IntersectionObserver(([entry]) => {
@@ -42,6 +50,7 @@ const dispose = () => {
   disposed = true;
   clearTimeout(timer);
   visits.disconnect();
+  phoneVisit.removeEventListener('change', observeVisit);
   sizes.disconnect();
   marqueeVisibility.disconnect();
   document.removeEventListener('visibilitychange', syncMarquee);
