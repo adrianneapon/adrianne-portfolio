@@ -28,9 +28,6 @@ export default function DesignProcess({ container }) {
         const panelCentre = panelTop + (innerHeight - panelTop) / 2;
         progress = (panelCentre - sectionTop - pinnedHeight) / height;
         container.style.setProperty('--process-pinned-height', `${pinnedHeight}px`);
-        // Clip only scrolling copy above the divider; leave the shared stars
-        // and particle canvas unobstructed throughout the pinned sequence.
-        container.style.setProperty('--process-panel-clip', `${columnTop - sectionTop + pinnedHeight}px`);
       }
       const next = Math.max(0, Math.min(STEPS.length - 1, Math.floor(progress)));
       setActive(next);

@@ -97,8 +97,20 @@
   .process-explanation { font-size: 10px; line-height: 12px; }
   #design-process { grid-template-columns: 1fr; --process-pinned-height: 445px; }
   .process-left { grid-area: 1 / 1; pointer-events: none; z-index: 1; }
+  /* The divider and its opaque backing travel together with native sticky scroll.
+     The column's existing stacking context keeps this behind its foreground. */
+  .process-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--process-pinned-height);
+    background: #FEFAE7;
+    z-index: -1;
+  }
   .process-intro { top: 268px; bottom: auto; left: 16px; right: 16px; padding-bottom: 24px; border-bottom: 1px solid #1A1A1A; }
-  .process-right { grid-area: 1 / 1; min-width: 0; clip-path: inset(var(--process-panel-clip, 445px) 0 0); }
+  .process-right { grid-area: 1 / 1; min-width: 0; }
   .process-step { padding-top: calc(var(--process-pinned-height) + min(190px, max(16px, calc(100vh - var(--process-pinned-height) - 210px)))); }
   .process-step-copy { width: calc(100% - 32px); margin-left: 16px; }
   .process-description { margin-top: 12px; font-size: 12px; line-height: 24px; }

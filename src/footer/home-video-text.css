@@ -139,6 +139,10 @@
   .home-video-name { font-size: clamp(18px, 4.5vw, 30px); }
   .home-video-role { font-size: clamp(12px, 2.7vw, 18px); }
 }
+@media (max-width: 398.03px) {
+  .home-video-role-separator { display: none; }
+  .home-video-role-last { display: block; }
+}
 @media (prefers-reduced-motion: reduce) {
   .home-video-title.is-complete .home-video-next,
   .home-video-title.is-complete .home-video-heading-prefix,

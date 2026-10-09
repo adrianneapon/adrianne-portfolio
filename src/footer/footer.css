@@ -66,6 +66,11 @@
 .footer-identity-name, .footer-identity-role { position: absolute; left: 0; width: 100%; text-align: center; }
 .footer-identity-name { top: 757px; color: #FEE4C4; font: 900 30px/77.8% Inter, sans-serif; letter-spacing: -1.2px; }
 .footer-identity-role { top: 803.95px; color: #FEE4C4; font: 400 14px/77.8% Inter, sans-serif; }
+@media (max-width: 365.53px) {
+  .footer-identity-role { line-height: 18px; }
+  .footer-role-separator { display: none; }
+  .footer-role-last { display: block; }
+}
 @media (prefers-reduced-motion: reduce) {
   .footer-marquee-track { animation: none; }
   .footer-heading-prefix, .footer-question, .footer-now, .footer-next { transition: none; }

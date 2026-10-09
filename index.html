@@ -162,6 +162,12 @@ p.logo-text {
 }
 .hero-role-canvas, .hero-designer-canvas { display: block; }
 .hero-role-hit, .hero-designer-hit { display: none; }
+.hero-touch-break { display: none; }
+.hero-h1[data-title-control] .hero-role-hit { display: block; pointer-events: auto; }
+/* Measured longest phrase + existing heading/Hero padding: 706.3125px. */
+@media (hover: none) and (max-width: 706.3125px), (pointer: coarse) and (max-width: 706.3125px) {
+  .hero-touch-break { display: initial; }
+}
 .hero-h1[data-particles] .hero-role { visibility: hidden; }
 .hero-h1[data-designer-particles] .hero-designer { visibility: hidden; }
 .hero-h1[data-particles] .hero-role-hit,
@@ -184,10 +190,15 @@ p.logo-text {
 /* Desktop typography targets; existing tablet/mobile sizing stays intact. */
 @media (min-width: 1025px) {
   #hero { justify-content: flex-start; padding-top: clamp(100px, 28.32vh, 258px); }
-  #hero .eyebrow { align-self: flex-start; margin-left: max(10px, calc(50vw - 481px)); margin-bottom: -21px; }
+  #hero .eyebrow { align-self: center; margin-left: 0; margin-bottom: -21px; }
   #hero .eyebrow-text { font-size: 38px; }
-  #hero .hero-h1 { top: -42px; align-self: flex-start; margin-left: max(0px, calc(50vw - 491px)); font-size: 178px; font-weight: 700; line-height: normal; letter-spacing: -.08em; }
+  #hero .hero-h1 { top: -42px; align-self: center; margin-left: 0; font-size: 178px; font-weight: 700; line-height: normal; letter-spacing: -.08em; }
   #hero .hero-sub { font-size: 42px; font-weight: 700; line-height: normal; letter-spacing: -.04em; max-width: 100%; }
+}
+
+/* Fit the longest discipline at the approved narrow-desktop widths only. */
+@media (min-width: 1025px) and (max-width: 1248px) {
+  #hero .hero-h1 { font-size: min(178px, calc(8.4vw + 73px)); }
 }
 
 /* ── RESPONSIVE ── */
@@ -240,20 +251,21 @@ p.logo-text {
     <span class="eyebrow-text">Hello, I’m Adrianne</span>
   </div>
 
-  <h1 class="hero-h1"><span class="hero-role">UIUX</span> <span class="hero-designer">Designer</span></h1>
+  <h1 class="hero-h1"><span class="hero-role">UI UX</span> <br class="hero-touch-break" aria-hidden="true"><span class="hero-designer">Designer</span></h1>
 
   <p class="hero-sub">
     I love creating beautiful <span style="color: #EE5122">user interfaces</span><br>and intuitive <span style="color: #EE5122">user experiences.</span>
   </p>
 </section>
 
-<!-- The role morphs; Designer only reacts locally to the pointer. -->
+<!-- The complete centered title shares one hover-triggered scatter/gather sequence. -->
 <script type="module" src="src/desktop-polish.js"></script>
 <script>
 (function () {
   const heading = document.querySelector('.hero-h1');
   const role = heading.querySelector('.hero-role');
   const suffix = heading.querySelector('.hero-designer');
+  const disciplines = ['UI UX', 'Product', 'Web'];
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const hover = matchMedia('(hover: hover) and (pointer: fine)');
   const canvas = document.createElement('canvas');
@@ -261,7 +273,8 @@ p.logo-text {
   canvas.className = 'hero-role-canvas';
   hit.className = 'hero-role-hit';
   canvas.setAttribute('aria-hidden', 'true');
-  hit.setAttribute('aria-hidden', 'true');
+  hit.setAttribute('role', 'button');
+  hit.tabIndex = 0;
   const ctx = canvas.getContext('2d');
   const mask = document.createElement('canvas');
   const sample = mask.getContext('2d', { willReadFrequently: true });
@@ -269,13 +282,10 @@ p.logo-text {
   heading.append(canvas, hit);
 
   const designerCanvas = document.createElement('canvas');
-  const designerHit = document.createElement('span');
   designerCanvas.className = 'hero-designer-canvas';
-  designerHit.className = 'hero-designer-hit';
   designerCanvas.setAttribute('aria-hidden', 'true');
-  designerHit.setAttribute('aria-hidden', 'true');
   const designerCtx = designerCanvas.getContext('2d');
-  heading.append(designerCanvas, designerHit);
+  heading.append(designerCanvas);
   let designerParticles = [], designerWidth = 0, designerHeight = 0;
   const designerPointer = { active: false, x: 0, y: 0, clientX: 0, clientY: 0 };
 
@@ -288,13 +298,22 @@ p.logo-text {
   let heroVisible = true, pausedAt = null, pausedTime = 0;
   let particles = [], targets = [], widths = [], current = 0;
   let phase = 'idle', phaseStart = 0, armed = true;
+  let pendingEntries = 0;
   let width = 0, height = 0, roleWidth = 0, roleHeight = 0;
   let roleLeft = 0, roleTop = 0, rightLimit = 0;
+  let layoutWidth = 0, layoutHeight = 0;
   const pointer = { active: false, x: 0, y: 0, clientX: 0, clientY: 0 };
-  let roleBounds = null, designerBounds = null;
-  const enabled = () => ready && hover.matches && !motion.matches;
+  let roleBounds = null, designerBounds = null, hitBounds = null;
+  const enabled = () => ready && !motion.matches;
+  let tap = null;
 
-  function invalidatePointerBounds() { roleBounds = null; designerBounds = null; }
+  function labelTitle() {
+    const title = `${disciplines[current]} Designer`;
+    heading.setAttribute('aria-label', title);
+    hit.setAttribute('aria-label', `Change title. Current title: ${title}`);
+  }
+
+  function invalidatePointerBounds() { roleBounds = null; designerBounds = null; hitBounds = null; }
 
   function updatePointerCoordinates() {
     // Latest input is mapped once per existing render frame. Reuse bounds until
@@ -317,12 +336,40 @@ p.logo-text {
   }
 
   function setHitArea() {
-    // Right-align the shorter role in the reserved slot to retain the word gap.
-    const left = roleLeft + roleWidth - widths[current];
+    if (!hover.matches || motion.matches) {
+      const box = heading.getBoundingClientRect();
+      const first = role.getBoundingClientRect(), last = suffix.getBoundingClientRect();
+      hit.style.left = (Math.min(first.left, last.left) - box.left - 16) + 'px';
+      hit.style.top = (Math.min(first.top, last.top) - box.top - 16) + 'px';
+      hit.style.width = (Math.max(first.right, last.right) - Math.min(first.left, last.left) + 32) + 'px';
+      hit.style.height = (Math.max(first.bottom, last.bottom) - Math.min(first.top, last.top) + 32) + 'px';
+      return;
+    }
+    // One hover target covers the entire current phrase.
+    const left = roleLeft;
     hit.style.left = (left - 16) + 'px';
     hit.style.top = (roleTop - 16) + 'px';
-    hit.style.width = (Math.min(roleLeft + roleWidth + 16, rightLimit) - left + 16) + 'px';
+    hit.style.width = (rightLimit - left + 32) + 'px';
     hit.style.height = (roleHeight + 32) + 'px';
+  }
+
+  function positionTitle() {
+    role.textContent = disciplines[current];
+    const box = heading.getBoundingClientRect();
+    const rect = role.getBoundingClientRect();
+    const end = suffix.getBoundingClientRect();
+    roleWidth = rect.width;
+    roleLeft = rect.left - box.left;
+    roleTop = rect.top - box.top;
+    rightLimit = end.right - box.left;
+    canvas.style.left = (roleLeft - PAD) + 'px';
+    canvas.style.top = (roleTop - PAD) + 'px';
+    designerCanvas.style.left = (end.left - box.left - PAD) + 'px';
+    designerCanvas.style.top = (end.top - box.top - PAD) + 'px';
+    setHitArea();
+    layoutWidth = heading.offsetWidth;
+    layoutHeight = heading.offsetHeight;
+    invalidatePointerBounds();
   }
 
   function build() {
@@ -331,6 +378,10 @@ p.logo-text {
     spreadScale = innerWidth >= 1025 ? 2 : 1;
     PAD = 150 * spreadScale;
     const style = getComputedStyle(heading);
+    sample.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    sample.letterSpacing = style.letterSpacing;
+    widths = disciplines.map(text => sample.measureText(text).width);
+    role.textContent = disciplines[current];
     const box = heading.getBoundingClientRect();
     const rect = role.getBoundingClientRect();
     roleWidth = rect.width;
@@ -338,8 +389,8 @@ p.logo-text {
     pointerRadius = Math.min(65, roleHeight) * spreadScale;
     roleLeft = rect.left - box.left;
     roleTop = rect.top - box.top;
-    rightLimit = suffix.getBoundingClientRect().left - box.left;
-    width = Math.ceil(roleWidth + PAD * 2);
+    rightLimit = suffix.getBoundingClientRect().right - box.left;
+    width = Math.ceil(Math.max(...widths) + PAD * 2);
     height = Math.ceil(roleHeight + PAD * 2);
     const dpr = Math.min(devicePixelRatio || 1, 2);
     canvas.width = Math.ceil(width * dpr);
@@ -351,20 +402,19 @@ p.logo-text {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     // Negative tracking shortens advance width, but the final glyph still overhangs it.
     const inkOverhang = Math.ceil(Math.abs(parseFloat(style.letterSpacing) || 0));
-    mask.width = Math.ceil(roleWidth + inkOverhang + 4);
+    mask.width = Math.ceil(Math.max(...widths) + inkOverhang + 4);
     mask.height = Math.ceil(roleHeight + 4);
     sample.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
     sample.letterSpacing = style.letterSpacing;
     sample.textBaseline = 'alphabetic';
     sample.fillStyle = '#fff';
-    const metrics = sample.measureText('UIUX');
+    const metrics = sample.measureText(disciplines[0]);
     const ascent = metrics.fontBoundingBoxAscent;
     const descent = metrics.fontBoundingBoxDescent;
     const baseline = (roleHeight - ascent - descent) / 2 + ascent;
-    widths = ['UIUX', 'Web'].map(text => sample.measureText(text).width);
-    targets = ['UIUX', 'Web'].map((text, index) => {
+    targets = disciplines.map((text, index) => {
       sample.clearRect(0, 0, mask.width, mask.height);
-      sample.fillText(text, roleWidth - widths[index], baseline);
+      sample.fillText(text, 0, baseline);
       const pixels = sample.getImageData(0, 0, mask.width, mask.height).data;
       const points = [];
       for (let y = 0; y < mask.height; y += 2) {
@@ -375,18 +425,21 @@ p.logo-text {
       }
       return points;
     });
-    if (!targets[0].length || !targets[1].length) return;
+    if (targets.some(points => !points.length)) return;
     particles = targets[current].map((target, i) => ({
       ...target, tx: target.x, ty: target.y,
       ...particleConstants(((i * 9301 + 49297) % 233280) / 233280)
     }));
     phase = 'idle';
+    pendingEntries = 0;
     heading.dataset.particles = '';
-    heading.setAttribute('aria-label', ['UIUX Designer', 'Web Designer'][current]);
+    labelTitle();
     role.setAttribute('aria-hidden', 'true');
     suffix.setAttribute('aria-hidden', 'true');
     setHitArea();
     buildDesigner(style, box, dpr);
+    layoutWidth = heading.offsetWidth;
+    layoutHeight = heading.offsetHeight;
   }
 
   function buildDesigner(style, box, dpr) {
@@ -420,16 +473,11 @@ p.logo-text {
         const alpha = pixels[(y * mask.width + x) * 4 + 3] / 255;
         if (alpha > 0.15) {
           const seed = ((designerParticles.length * 9301 + 49297) % 233280) / 233280;
-          designerParticles.push({ x: PAD + x, y: PAD + y, tx: PAD + x, ty: PAD + y, alpha, ...particleConstants(seed) });
+          designerParticles.push({ x: PAD + x, y: PAD + y, tx: PAD + x, ty: PAD + y,
+            homeX: PAD + x, homeY: PAD + y, alpha, ...particleConstants(seed) });
         }
       }
     }
-    // Keep the two hit areas disjoint without changing the existing role target.
-    const hitLeft = Math.max(left - 16, Math.min(roleLeft + roleWidth + 16, rightLimit));
-    designerHit.style.left = hitLeft + 'px';
-    designerHit.style.top = (top - 16) + 'px';
-    designerHit.style.width = (left + rect.width + 16 - hitLeft) + 'px';
-    designerHit.style.height = (rect.height + 32) + 'px';
     if (designerParticles.length) heading.dataset.designerParticles = '';
   }
 
@@ -462,30 +510,65 @@ p.logo-text {
   }
 
   function enter(event) {
-    if (!enabled() || event.pointerType === 'touch') return;
+    if (!hover.matches || !enabled() || event.pointerType === 'touch') return;
     move(event);
-    if (!armed || phase !== 'idle' || !particles.length) return;
+    if (!armed || !particles.length) return;
     armed = false;
+    pendingEntries++;
+    if (phase === 'idle') startTransition();
+  }
+
+  function startTransition() {
+    pendingEntries--;
     phase = 'scatter';
     phaseStart = performance.now() - pausedTime;
-    particles.forEach(p => {
+    const roleBox = canvas.getBoundingClientRect();
+    const designerBox = designerCanvas.getBoundingClientRect();
+    const centerX = PAD + (rightLimit - roleLeft) / 2;
+    const scatter = (points, offsetX, offsetY) => points.forEach(p => {
       p.sx = p.x; p.sy = p.y;
-      const angle = Math.atan2(p.y - PAD - roleHeight / 2, p.x - PAD - roleWidth / 2);
+      const angle = Math.atan2(p.y + offsetY - PAD - roleHeight / 2, p.x + offsetX - centerX);
       const distance = p.scatterDistance;
       p.tx = p.x + Math.cos(angle + p.seed - 0.5) * distance;
       p.ty = p.y + Math.sin(angle + p.seed - 0.5) * distance;
     });
+    scatter(particles, 0, 0);
+    scatter(designerParticles, designerBox.left - roleBox.left, designerBox.top - roleBox.top);
   }
 
   function move(event) {
-    if (event.pointerType === 'touch') return;
+    if (!hover.matches || event.pointerType === 'touch') return;
     if (!pointer.active) invalidatePointerBounds();
     pointer.clientX = event.clientX;
     pointer.clientY = event.clientY;
     pointer.active = true;
+    moveDesigner(event);
   }
 
-  function leave() { pointer.active = false; armed = true; }
+  function leave() { pointer.active = false; designerPointer.active = false; }
+
+  function activateTitle() {
+    if (!ready || disposed) return;
+    if (motion.matches) {
+      current = (current + 1) % disciplines.length;
+      positionTitle();
+      labelTitle();
+      return;
+    }
+    if (dirty) build();
+    if (!particles.length) return;
+    pendingEntries++;
+    if (phase === 'idle') startTransition();
+  }
+
+  function rearm(event) {
+    // Reflow can synthesize leave/enter events beneath a stationary pointer.
+    // Only real pointer travel outside the current target arms another entry.
+    if (armed || !enabled() || event.pointerType === 'touch' || (!event.movementX && !event.movementY)) return;
+    if (!hitBounds) hitBounds = hit.getBoundingClientRect();
+    if (event.clientX < hitBounds.left || event.clientX > hitBounds.right ||
+        event.clientY < hitBounds.top || event.clientY > hitBounds.bottom) armed = true;
+  }
 
   function render(now) {
     frame = null;
@@ -497,21 +580,36 @@ p.logo-text {
     previous = now;
     let elapsed = now - phaseStart;
     if (phase === 'scatter' && elapsed >= SCATTER) {
-      current = 1 - current;
+      const previousLeft = canvas.getBoundingClientRect().left;
+      const previousDesigner = designerCanvas.getBoundingClientRect();
+      current = (current + 1) % disciplines.length;
+      positionTitle();
+      const shift = previousLeft - canvas.getBoundingClientRect().left;
       const old = particles;
       particles = targets[current].map((target, i) => {
         const p = old[Math.floor(i * old.length / targets[current].length)];
-        return { ...p, sx: p.x, sy: p.y, tx: target.x, ty: target.y, alpha: target.alpha };
+        return { ...p, x: p.x + shift, sx: p.x + shift, sy: p.y, tx: target.x, ty: target.y, alpha: target.alpha };
+      });
+      const nextDesigner = designerCanvas.getBoundingClientRect();
+      designerParticles.forEach(p => {
+        // Keep scattered pixels in place while the whole phrase recenters.
+        p.x += previousDesigner.left - nextDesigner.left;
+        p.y += previousDesigner.top - nextDesigner.top;
+        p.sx = p.x; p.sy = p.y;
+        p.tx = p.homeX; p.ty = p.homeY;
       });
       phase = 'gather';
       phaseStart = now;
       elapsed = 0;
-      heading.setAttribute('aria-label', ['UIUX Designer', 'Web Designer'][current]);
-      // Keep the entry region fixed during the morph to avoid synthetic re-entry.
+      labelTitle();
     }
     if (phase === 'gather' && elapsed >= GATHER + 160) {
       phase = 'idle';
       setHitArea();
+      if (pendingEntries) {
+        startTransition();
+        elapsed = 0;
+      }
     }
     const driftX = now * 0.0009, driftY = now * 0.00075;
     const scatterAmount = phase === 'scatter' ? ease(elapsed / SCATTER) : 0;
@@ -534,8 +632,15 @@ p.logo-text {
       designerCtx.clearRect(0, 0, designerWidth, designerHeight);
       designerCtx.fillStyle = '#3B001B';
       designerParticles.forEach(p => {
-        const x = p.tx + Math.sin(driftX + p.driftPhase) * 0.35;
-        const y = p.ty + Math.cos(driftY + p.driftPhase) * 0.35;
+        let x = p.tx, y = p.ty;
+        if (phase !== 'idle') {
+          const amount = phase === 'scatter' ? scatterAmount : ease((elapsed - p.gatherDelay) / GATHER);
+          x = p.sx + (p.tx - p.sx) * amount;
+          y = p.sy + (p.ty - p.sy) * amount;
+        } else {
+          x += Math.sin(driftX + p.driftPhase) * 0.35;
+          y += Math.cos(driftY + p.driftPhase) * 0.35;
+        }
         drawParticle(designerCtx, p, x, y, designerPointer, follow);
       });
       designerCtx.globalAlpha = 1;
@@ -546,6 +651,7 @@ p.logo-text {
   function sync() {
     if (disposed) return;
     invalidatePointerBounds();
+    if (!hover.matches) leave();
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
     previous = 0;
@@ -556,7 +662,9 @@ p.logo-text {
       pausedAt = null;
     }
     if (!enabled()) {
-      current = 0; phase = 'idle'; armed = true; pointer.active = false;
+      if (hover.matches) current = 0;
+      role.textContent = disciplines[current];
+      phase = 'idle'; armed = true; pendingEntries = 0; pointer.active = false;
       delete heading.dataset.particles;
       delete heading.dataset.designerParticles;
       designerPointer.active = false;
@@ -569,9 +677,18 @@ p.logo-text {
     } else if (running) {
       frame = requestAnimationFrame(render);
     }
+    if (ready) {
+      heading.dataset.titleControl = '';
+      labelTitle();
+      if (motion.matches) positionTitle();
+    }
   }
 
-  const observer = new ResizeObserver(() => { dirty = true; });
+  const observer = new ResizeObserver(() => {
+    // A deliberate word reflow is already positioned; do not restart its morph.
+    if (heading.offsetWidth !== layoutWidth || heading.offsetHeight !== layoutHeight) dirty = true;
+    if (ready && motion.matches) positionTitle();
+  });
   // Include the particle spill area; never suspend a still-visible scatter.
   const heroVisibility = new IntersectionObserver(([entry]) => {
     heroVisible = entry.isIntersecting;
@@ -582,16 +699,38 @@ p.logo-text {
   const options = { signal: events.signal };
   document.addEventListener('scroll', invalidatePointerBounds, { ...options, capture: true, passive: true });
   window.addEventListener('resize', invalidatePointerBounds, { ...options, passive: true });
+  document.addEventListener('pointermove', rearm, { ...options, passive: true });
   hit.addEventListener('pointerenter', enter, options);
   hit.addEventListener('pointermove', move, options);
   hit.addEventListener('pointerleave', leave, options);
-  designerHit.addEventListener('pointerenter', moveDesigner, options);
-  designerHit.addEventListener('pointermove', moveDesigner, options);
-  designerHit.addEventListener('pointerleave', () => { designerPointer.active = false; }, options);
+  hit.addEventListener('pointerdown', event => {
+    if (hover.matches || !event.isPrimary || event.button !== 0) return;
+    tap = { id: event.pointerId, x: event.clientX, y: event.clientY, scroll: scrollY, valid: true };
+  }, { ...options, passive: true });
+  document.addEventListener('pointermove', event => {
+    if (tap && tap.id === event.pointerId && Math.hypot(event.clientX - tap.x, event.clientY - tap.y) > 10) tap.valid = false;
+  }, { ...options, passive: true });
+  document.addEventListener('pointercancel', event => {
+    if (tap && tap.id === event.pointerId) tap = null;
+  }, { ...options, passive: true });
+  hit.addEventListener('click', event => {
+    // Native click follows a completed tap, never activate again on pointerup.
+    if (event.detail !== 0 && (hover.matches || !tap || !tap.valid || Math.abs(scrollY - tap.scroll) > 2)) return;
+    tap = null;
+    activateTitle();
+  }, options);
+  hit.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    if (!event.repeat) activateTitle();
+  }, options);
   motion.addEventListener('change', sync, options);
   hover.addEventListener('change', sync, options);
   document.addEventListener('visibilitychange', sync, options);
-  document.fonts.addEventListener('loadingdone', () => { dirty = true; }, options);
+  document.fonts.addEventListener('loadingdone', () => {
+    dirty = true;
+    if (ready && motion.matches) positionTitle();
+  }, options);
   window.addEventListener('pagehide', event => {
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
@@ -907,7 +1046,7 @@ p.logo-text {
           <a href="https://wa.me/639454116411" target="_blank" rel="noopener noreferrer" aria-label="Contact Adrianne on WhatsApp"><img src="images/img/home-whatsapp.png" alt="" width="28" height="28"></a>
         </div>
         <p class="home-video-name">ADRIANNE APON</p>
-        <p class="home-video-role">UI/UX Designer • Website Designer</p>
+        <p class="home-video-role"><span>UI/UX Designer • Product Designer</span><span class="home-video-role-separator"> • </span><span class="home-video-role-last">Website Designer</span></p>
       </div>
     </div>
   </div>
